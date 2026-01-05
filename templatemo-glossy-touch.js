@@ -1,54 +1,60 @@
-// ===============================
-// Simple multi-page shell control
-// ===============================
+// templatemo-glossy-touch.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ===============================
+    // PAGE SWITCHING
+    // ===============================
     const pages = document.querySelectorAll('.page');
-    const navLinks = document.querySelectorAll('[data-page-target]');
-    let currentPageId = 'page-overview';
+    const navLinks = document.querySelectorAll('.nav-link[data-page-target]');
+    const logoTriggers = document.querySelectorAll('.logo[data-page-target], .footer-logo[data-page-target]');
 
-    function showPage(pageId) {
-        // Hide/show pages
+    function setActivePage(pageId) {
+        let pageFound = false;
+
         pages.forEach(page => {
-            page.classList.toggle('is-active', page.id === pageId);
+            const isTarget = page.id === pageId;
+            page.classList.toggle('is-active', isTarget);
+            if (isTarget) pageFound = true;
         });
 
-        // Update nav & footer links
+        // If requested id doesn't exist, fall back to first page
+        if (!pageFound && pages.length > 0) {
+            const fallbackId = pages[0].id;
+            pages[0].classList.add('is-active');
+            pageId = fallbackId;
+        }
+
         navLinks.forEach(link => {
-            const target = link.getAttribute('data-page-target');
+            const target = link.dataset.pageTarget;
             link.classList.toggle('is-active', target === pageId);
         });
 
-        currentPageId = pageId;
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Attach click handlers to all elements with data-page-target
+    // Initial page
+    setActivePage('page-overview');
+
+    // Nav links
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = link.getAttribute('data-page-target');
-            if (targetId) {
-                showPage(targetId);
-            }
+            const targetId = link.dataset.pageTarget;
+            if (targetId) setActivePage(targetId);
         });
     });
 
-    // Make logo + footer-logo act as "home" buttons if they have data-page-target
-    document.querySelectorAll('.logo, .footer-logo').forEach(el => {
+    // Logo + footer logo act as "home" unless pointed somewhere else
+    logoTriggers.forEach(el => {
         el.addEventListener('click', () => {
-            const targetId = el.getAttribute('data-page-target') || 'page-overview';
-            showPage(targetId);
+            const targetId = el.dataset.pageTarget || 'page-overview';
+            setActivePage(targetId);
         });
     });
 
-    // Initial page
-    showPage(currentPageId);
-
     // ===============================
-    // Parallax background shapes
+    // PARALLAX BACKGROUND SHAPES
     // ===============================
-
     document.addEventListener('mousemove', (e) => {
         const shapes = document.querySelectorAll('.shape');
         const x = e.clientX / window.innerWidth;
@@ -71,18 +77,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ===============================
-    // Ripple effect on glass elements
+    // RIPPLE EFFECT ON GLASS
     // ===============================
-
     const glassElements = document.querySelectorAll('.glass');
     glassElements.forEach(element => {
         element.addEventListener('click', function (e) {
-            const ripple = document.createElement('div');
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
 
+            const ripple = document.createElement('div');
             ripple.style.cssText = `
                 position: absolute;
                 width: ${size}px;
@@ -109,9 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Inject ripple keyframes if not already present
-    const style = document.createElement('style');
-    style.textContent = `
+    const rippleStyle = document.createElement('style');
+    rippleStyle.textContent = `
         @keyframes ripple {
             to {
                 transform: scale(4);
@@ -119,12 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(rippleStyle);
 
     // ===============================
-    // Optional form handler (safe)
+    // OPTIONAL FORM HANDLER (SAFE)
     // ===============================
-
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', (e) => {
