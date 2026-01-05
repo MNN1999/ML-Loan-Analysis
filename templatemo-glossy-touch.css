@@ -18,8 +18,8 @@ https://templatemo.com/tm-592-glossy-touch
 }
 body {
     font-family: "Work Sans", "Playfair Display", serif;
-    background: #ffffff; /* plain white background */
-    color: #222; /* darker text for readability */
+    background: #e7dec8; 
+    color: #000; /* darker text for readability */
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -122,10 +122,10 @@ body {
 }
 /* Header styles */
 header {
-    padding: 20px;
+    padding: 16px;
 }
 .container {
-    max-width: 1200px;
+    max-width: 2000px;
     margin: 0 auto;
 }
 /* Navigation styles */
@@ -138,7 +138,7 @@ nav {
 .logo {
     font-size: 32px;
     font-weight: bold;
-    color: white;
+    color: black;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
@@ -179,7 +179,7 @@ nav {
 }
 .nav-links a:hover,
 .nav-links a.active {
-    color: white;
+    color: black;
     background: rgba(255, 255, 255, 0.1);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -222,7 +222,7 @@ nav {
 }
 .hero h1 {
     font-size: 2.8rem;
-    color: white;
+    color: black;
     margin-bottom: 20px;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     line-height: 1.2;
@@ -237,7 +237,7 @@ nav {
     display: inline-block;
     padding: 15px 40px;
     background: rgba(255, 255, 255, 0.2);
-    color: white;
+    color: black;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
@@ -264,7 +264,7 @@ button[type="submit"] {
 .feature-card {
     padding: 40px 30px;
     text-align: center;
-    color: white;
+    color: black;
 }
 .feature-icon {
     width: 60px;
@@ -280,7 +280,7 @@ button[type="submit"] {
 .feature-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: white;
+    color: black;
 }
 .feature-card p {
     color: rgba(255, 255, 255, 0.8);
@@ -296,7 +296,7 @@ button[type="submit"] {
 }
 .about-text {
     padding: 40px;
-    color: white;
+    color: black;
 }
 .about-text h2 {
     font-size: 2.5rem;
@@ -318,12 +318,12 @@ button[type="submit"] {
 .stat-card {
     text-align: center;
     padding: 30px;
-    color: white;
+    color: black;
 }
 .stat-number {
     font-size: 3rem;
     font-weight: bold;
-    color: white;
+    color: black;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .stat-label {
@@ -337,7 +337,7 @@ button[type="submit"] {
 }
 .team-section h2 {
     font-size: 2.5rem;
-    color: white;
+    color: black;
     text-align: center;
     margin-bottom: 50px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -350,7 +350,7 @@ button[type="submit"] {
 .team-member {
     padding: 40px 30px;
     text-align: center;
-    color: white;
+    color: black;
     transition: all 0.3s ease;
 }
 .team-member:hover {
@@ -378,7 +378,7 @@ button[type="submit"] {
 .team-member h3 {
     font-size: 1.4rem;
     margin-bottom: 8px;
-    color: white;
+    color: black;
 }
 .team-member .role {
     font-size: 1rem;
@@ -413,7 +413,7 @@ button[type="submit"] {
 .team-social a:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
-    color: white;
+    color: black;
 }
 /* Services page styles */
 .services-grid {
@@ -424,7 +424,7 @@ button[type="submit"] {
 }
 .service-card {
     padding: 40px 30px;
-    color: white;
+    color: black;
     text-align: left;
 }
 .service-header {
@@ -445,7 +445,7 @@ button[type="submit"] {
 }
 .service-card h3 {
     font-size: 1.4rem;
-    color: white;
+    color: black;
 }
 .service-card p {
     color: rgba(255, 255, 255, 0.8);
@@ -481,7 +481,7 @@ button[type="submit"] {
     padding: 40px;
 }
 .contact-form h2 {
-    color: white;
+    color: black;
     font-size: 2rem;
     margin-bottom: 30px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -502,7 +502,7 @@ button[type="submit"] {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    color: white;
+    color: black;
     font-size: 16px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     backdrop-filter: blur(10px);
@@ -526,7 +526,7 @@ button[type="submit"] {
 }
 .contact-info {
     padding: 40px;
-    color: white;
+    color: black;
 }
 .contact-info h2 {
     font-size: 2rem;
@@ -550,7 +550,7 @@ button[type="submit"] {
     font-size: 18px;
 }
 .contact-item-text h4 {
-    color: white;
+    color: black;
     margin-bottom: 5px;
 }
 .contact-item-text p {
@@ -558,7 +558,7 @@ button[type="submit"] {
 }
 .contact-map {
     padding: 40px;
-    color: white;
+    color: black;
     width: 100%;
 }
 .contact-map h2 {
@@ -631,7 +631,7 @@ button[type="submit"] {
     padding: 5px 10px;
 }
 .footer-links a:hover {
-    color: white;
+    color: black;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 .copyright {
@@ -722,5 +722,6 @@ button[type="submit"] {
     }
 
 }
+
 
 
