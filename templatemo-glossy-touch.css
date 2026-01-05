@@ -19,7 +19,7 @@ https://templatemo.com/tm-592-glossy-touch
 body {
     font-family: "Work Sans", "Playfair Display", serif;
     background: #e7dec8; 
-    color: #999; /* darker text for readability */
+    color: #000; /* darker text for readability */
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -792,6 +792,7 @@ a:hover {
 .cta-button:hover {
   color: #000 !important;
 }
+
 
 
 
