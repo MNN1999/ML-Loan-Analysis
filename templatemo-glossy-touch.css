@@ -1,11 +1,6 @@
 @charset "utf-8";
 /*
-
-TemplateMo 592 glossy touch
-https://templatemo.com/tm-592-glossy-touch
-
 Light glass theme edit (white background + dark text)
-
 */
 
 * {
@@ -113,7 +108,7 @@ body {
 /* Glass container styles */
 .glass {
     /* “Light glass”: white panel with slight tint + blur + subtle border */
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(20, 20, 24, 0.22);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -125,7 +120,7 @@ body {
 }
 
 .glass:hover {
-    background: rgba(255, 255, 255, 0.84);
+    background: rgba(20, 20, 24, 0.28);
     transform: translateY(-5px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.14);
 }
@@ -848,3 +843,4 @@ button[type="submit"] {
         font-size: 22px;
     }
 }
+
