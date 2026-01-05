@@ -190,80 +190,80 @@ https://templatemo.com/tm-592-glossy-touch
 
                           <!-- TECHNICAL ARCHITECTURE VIEW -->
             <div id="about" class="page">
-                        <section class="architecture">
-                            <div class="about-text glass architecture-card">
-                                <h2>Data &amp; Pipeline - Technical Architecture </h2>
-                                <p>
-                                    The dataset is a synthetic but bank-like portfolio of ~20,000 loan applications. Each record
-                                    contains customer characteristics, risk and behavioural signals, loan economics and the final
-                                    decision. 
-                                </p> 
-                                <p>
-                                    The goal of the pipeline is simple:
-                                    take this raw portfolio and build a clean, reproducible flow that goes
-                                    from raw CSV &rarr; SQL &rarr; engineered features &rarr; model &rarr; anomaly flags.
-                                </p>
-
-                                <div class="pipeline-grid">
-                                    <!-- Row 1 -->
-                                    <div class="pipeline-card glass pipeline-row">
-                                        <div class="pipeline-left">
-                                            <div class="pipeline-step">1</div>
-                                            <h3>Data layer</h3>
-                                        </div>
-
-                                        <div class="pipeline-right">
-                                            <ul>
-                                                <li>Source: synthetic CSV with ~20k loans.</li>
-                                                <li>Database: PostgreSQL on Neon (<code>loan_data</code> table).</li>
-                                                <li>Access: Python via SQLAlchemy.</li>
-                                            </ul>
-                                            <p class="pipeline-arrow">
-                                                Storage &rarr; reliable, queryable single source of truth.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Row 2 -->
-                                    <div class="pipeline-card glass pipeline-row">
-                                        <div class="pipeline-left">
-                                            <div class="pipeline-step">2</div>
-                                            <h3>Logic layer (SQL + Python)</h3>
-                                        </div>
-
-                                        <div class="pipeline-right">
-                                            <ul>
-                                                <li>SQL: banding logic and payment-to-income calculation.</li>
-                                                <li>Python: feature selection, EDA and model building.</li>
-                                                <li>scikit-learn Pipeline for preprocessing + logistic regression.</li>
-                                            </ul>
-                                            <p class="pipeline-arrow">
-                                                Raw values &rarr; business-aligned features &rarr; interpretable model.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Row 3 -->
-                                    <div class="pipeline-card glass pipeline-row">
-                                        <div class="pipeline-left">
-                                            <div class="pipeline-step">3</div>
-                                            <h3>Output &amp; presentation layer</h3>
-                                        </div>
-
-                                        <div class="pipeline-right">
-                                            <ul>
-                                                <li>Anomaly flags and exception types stored in the final DataFrame.</li>
-                                                <li>Plots exported to <code>figures/</code> for reuse in GitHub Pages and slides.</li>
-                                                <li>Notebook + this site tell one consistent storyline.</li>
-                                            </ul>
-                                            <p class="pipeline-arrow">
-                                                Model outputs &rarr; visual story &rarr; review-ready insights.
-                                            </p>
-                                        </div>
-                                    </div>
+                <section class="architecture">
+                    <div class="about-text glass architecture-card">
+                        <h2>Data &amp; Pipeline - Technical Architecture </h2>
+                        <p>
+                            The dataset is a synthetic but bank-like portfolio of ~20,000 loan applications. Each record
+                            contains customer characteristics, risk and behavioural signals, loan economics and the final
+                            decision. 
+                        </p> 
+                        <p>
+                            The goal of the pipeline is simple:
+                            take this raw portfolio and build a clean, reproducible flow that goes
+                            from raw CSV &rarr; SQL &rarr; engineered features &rarr; model &rarr; anomaly flags.
+                        </p>
+    
+                        <div class="pipeline-grid">
+                            <!-- Row 1 -->
+                            <div class="pipeline-card glass pipeline-row">
+                                <div class="pipeline-left">
+                                    <div class="pipeline-step">1</div>
+                                    <h3>Data layer</h3>
+                                </div>
+    
+                                <div class="pipeline-right">
+                                    <ul>
+                                        <li>Source: synthetic CSV with ~20k loans.</li>
+                                        <li>Database: PostgreSQL on Neon (<code>loan_data</code> table).</li>
+                                        <li>Access: Python via SQLAlchemy.</li>
+                                    </ul>
+                                    <p class="pipeline-arrow">
+                                        Storage &rarr; reliable, queryable single source of truth.
+                                    </p>
                                 </div>
                             </div>
-                        </section>
+    
+                            <!-- Row 2 -->
+                            <div class="pipeline-card glass pipeline-row">
+                                <div class="pipeline-left">
+                                    <div class="pipeline-step">2</div>
+                                    <h3>Logic layer (SQL + Python)</h3>
+                                </div>
+    
+                                <div class="pipeline-right">
+                                    <ul>
+                                        <li>SQL: banding logic and payment-to-income calculation.</li>
+                                        <li>Python: feature selection, EDA and model building.</li>
+                                        <li>scikit-learn Pipeline for preprocessing + logistic regression.</li>
+                                    </ul>
+                                    <p class="pipeline-arrow">
+                                        Raw values &rarr; business-aligned features &rarr; interpretable model.
+                                    </p>
+                                </div>
+                            </div>
+    
+                            <!-- Row 3 -->
+                            <div class="pipeline-card glass pipeline-row">
+                                <div class="pipeline-left">
+                                    <div class="pipeline-step">3</div>
+                                    <h3>Output &amp; presentation layer</h3>
+                                </div>
+    
+                                <div class="pipeline-right">
+                                    <ul>
+                                        <li>Anomaly flags and exception types stored in the final DataFrame.</li>
+                                        <li>Plots exported to <code>figures/</code> for reuse in GitHub Pages and slides.</li>
+                                        <li>Notebook + this site tell one consistent storyline.</li>
+                                    </ul>
+                                    <p class="pipeline-arrow">
+                                        Model outputs &rarr; visual story &rarr; review-ready insights.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                         <!-- FLOWCHART STYLE PIPELINE -->
                         <section class="timeline-section">
