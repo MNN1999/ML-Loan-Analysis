@@ -4,93 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Approval Policy Modeling + Anomaly Detection</title>
-    
+
     <link rel="stylesheet" href="templatemo-glossy-touch.css">
-<!--
-
-TemplateMo 592 glossy touch
-
-https://templatemo.com/tm-592-glossy-touch
-
--->
-    <style>
-        /* Small custom tweaks for the viz rows */
-        .viz-section {
-            margin-top: 1.5rem;
-        }
-        .viz-row {
-            display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
-            gap: 1.5rem;
-            align-items: stretch;
-        }
-        @media (max-width: 900px) {
-            .viz-row {
-                grid-template-columns: 1fr;
-            }
-
-                /* Add padding so text / image don't hug the glass border */
-        .viz-image.glass,
-        .viz-text.glass {
-            padding: 24px 28px;
-        }
-        
-        /* Center heading + image on the left card */
-        .viz-image.glass {
-            text-align: center;
-        }
-        
-        /* Center only the heading on the right card */
-        .viz-text.glass h3 {
-            text-align: center;
-        }
-
-        }
-        .viz-image.glass img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-        }
-        .viz-text ul {
-            margin-left: 1.2rem;
-        }
-        .viz-text ul li {
-            margin-bottom: 0.4rem;
-        }
-        .pipeline-grid {
-            display: grid;
-            gap: 1rem;
-        }
-        @media (min-width: 900px) {
-            .pipeline-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-        .pipeline-card h3 {
-            margin-bottom: 0.5rem;
-        }
-        .pipeline-arrow {
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-    </style>
 </head>
 <body>
+    <!-- Floating background shapes (generic, reusable visual layer) -->
     <div class="bg-shapes">
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
         <div class="shape shape-3"></div>
         <div class="shape shape-4"></div>
         <div class="shape shape-5"></div>
+        <div class="shape shape-6"></div>
     </div>
 
     <div class="page-wrapper">
-        <div class="glass-layout">
-            <header class="glass">
-                <div class="header-content">
-                    <nav class="glass">
-                        <div class="logo" onclick="showPage('home')">
+        <div class="layout-shell">
+            <!-- HEADER / NAV -->
+            <header class="glass site-header">
+                <div class="container">
+                    <nav class="nav glass">
+                        <div class="logo" data-page-target="page-overview">
                             <div class="logo-icon">
                                 <svg viewBox="0 0 48 48" fill="white" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="16" cy="16" r="5" opacity="0.9"/>
@@ -109,549 +43,560 @@ https://templatemo.com/tm-592-glossy-touch
                             </div>
                             <span>Loan Approval Policy Modeling + Anomaly Detection</span>
                         </div>
+
                         <div class="nav-links">
-                            <a href="#" onclick="showPage('home')" class="active">Overview</a>
-                            <a href="#" onclick="showPage('about')">Data &amp; pipeline</a>
-                            <a href="#" onclick="showPage('services')">Model &amp; insights</a>
-                            <a href="#" onclick="showPage('contact')">Reflection &amp; links</a>
+                            <a href="#" class="nav-link is-active" data-page-target="page-overview">Overview</a>
+                            <a href="#" class="nav-link" data-page-target="page-pipeline">Data &amp; pipeline</a>
+                            <a href="#" class="nav-link" data-page-target="page-model">Model &amp; insights</a>
+                            <a href="#" class="nav-link" data-page-target="page-reflection">Reflection &amp; links</a>
                         </div>
                     </nav>
                 </div>
             </header>
 
-            <!-- HOME / OVERVIEW -->
-            <div id="home" class="page active">
-                <div class="container">
-                    <div class="content-wrapper">
-                        <section class="hero glass">
-                            <div class="hero-image">
-                                <!-- Feature importance plot -->
-                                <img src="figures/bar_feature_importance_top10.png" alt="Top 10 feature importance coefficients" />
-                            </div>
-                            <div class="hero-content">
-                                <h1>Loan Approval Policy Modeling + Anomaly Detection</h1>
-                                <p>
-                                    This project takes a portfolio of ~20k loan applications and uses a simple, interpretable
-                                    model to learn the bank&apos;s implicit loan approval policy. Once that policy is learned,
-                                    the same model is used to scan the portfolio and flag loans where the historical decision
-                                    does not match the behaviour suggested by the data.
-                                </p>
-                                <p>
-                                    In practical terms:
-                                    historical approvals &amp; rejections &rarr; learned approval policy &rarr;
-                                    a shortlist of high-value anomalies for risk and underwriting teams to review.
-                                </p>
-                                <a href="https://github.com/MNN1999/ML-Loan-Analysis" class="cta-button" target="_blank" rel="noopener">
-                                    View project on GitHub
-                                </a>
-                            </div>
-                        </section>
+            <!-- PAGE 1: OVERVIEW -->
+            <main>
+                <section id="page-overview" class="page is-active">
+                    <div class="container">
+                        <div class="content-wrapper">
+                            <!-- Hero: split card (image + copy) -->
+                            <section class="section section-hero glass">
+                                <div class="hero-grid">
+                                    <div class="hero-media">
+                                        <img src="figures/bar_feature_importance_top10.png"
+                                             alt="Top 10 feature importance coefficients" />
+                                    </div>
+                                    <div class="hero-body">
+                                        <h1>Loan Approval Policy Modeling + Anomaly Detection</h1>
+                                        <p>
+                                            This project takes a portfolio of ~20k loan applications and uses a simple, interpretable
+                                            model to learn the bank&apos;s implicit loan approval policy. Once that policy is learned,
+                                            the same model is used to scan the portfolio and flag loans where the historical decision
+                                            does not match the behaviour suggested by the data.
+                                        </p>
+                                        <p>
+                                            In practical terms:
+                                            historical approvals &amp; rejections &rarr; learned approval policy &rarr;
+                                            a shortlist of high-value anomalies for risk and underwriting teams to review.
+                                        </p>
+                                        <a href="https://github.com/MNN1999/ML-Loan-Analysis"
+                                           class="btn-primary"
+                                           target="_blank"
+                                           rel="noopener">
+                                            View project on GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
 
-                        <section class="features">
-                            <!-- PROBLEM -->
-                            <div class="feature-card glass">
-                                <div class="feature-icon">❓</div>
-                                <h3>Problem</h3>
-                                <p>
-                                    The bank makes thousands of loan decisions, but the real approval policy lives in
-                                    underwriters&apos; heads and scattered guidelines. Medium-risk customers are especially
-                                    inconsistent: some are approved with relatively high debt burden, others are rejected
-                                    despite looking affordable. Management has no clean way to see where policy is strict,
-                                    lenient, or simply noisy.
-                                </p>
-                            </div>
-                            
-                            <!-- ANALYSIS -->
-                            <div class="feature-card glass">
-                                <div class="feature-icon">📊</div>
-                                <h3>Analysis</h3>
-                                <p>
-                                    We build a compact pipeline:
-                                    raw loan-level CSV &rarr; PostgreSQL on Neon &rarr; SQL feature engineering
-                                    (risk bands, income bands, ticket-size bands, affordability ratios) &rarr;
-                                    Python EDA &amp; logistic regression.
-                                </p>
-                                <p>
-                                    The model is trained to mimic the bank&apos;s approval behaviour, then evaluated and
-                                    calibrated by risk and affordability segments. In short:
-                                    data in SQL &rarr; features that match how risk teams think &rarr; an ML model
-                                    that behaves like the bank.
-                                </p>
-                            </div>
+                            <!-- 3-column feature row: Problem / Analysis / Solution -->
+                            <section class="section">
+                                <div class="grid-3">
+                                    <!-- PROBLEM -->
+                                    <article class="card glass card--center">
+                                        <div class="card-icon">❓</div>
+                                        <h3>Problem</h3>
+                                        <p>
+                                            The bank makes thousands of loan decisions, but the real approval policy lives in
+                                            underwriters&apos; heads and scattered guidelines. Medium-risk customers are especially
+                                            inconsistent: some are approved with relatively high debt burden, others are rejected
+                                            despite looking affordable. Management has no clean way to see where policy is strict,
+                                            lenient, or simply noisy.
+                                        </p>
+                                    </article>
 
-                            <!-- SOLUTION -->
-                            <div class="feature-card glass">
-                                <div class="feature-icon">✅</div>
-                                <h3>Solution</h3>
-                                <p>
-                                    Once the model reliably mirrors the existing policy, we use it as a
-                                    &ldquo;policy mirror&rdquo;: for each loan, we compare the model&apos;s predicted
-                                    approval with the historical decision.
-                                </p>
-                                <p>
-                                    Medium-risk segment &rarr; high-confidence predictions (very low or very high approval probability)
-                                    &rarr; loans where model and history disagree &rarr; an anomaly list that highlights:
-                                    &ldquo;this customer looks like we usually approve, but was rejected&rdquo; and
-                                    &ldquo;this customer looks like we usually reject, but was approved&rdquo;.
-                                </p>
-                                <p>
-                                    The output is a small, focused review queue that can be used for QA, policy refinement,
-                                    or training new underwriters.
-                                </p>
-                            </div>
-                        </section>
+                                    <!-- ANALYSIS -->
+                                    <article class="card glass card--center">
+                                        <div class="card-icon">📊</div>
+                                        <h3>Analysis</h3>
+                                        <p>
+                                            We build a compact pipeline:
+                                            raw loan-level CSV &rarr; PostgreSQL on Neon &rarr; SQL feature engineering
+                                            (risk bands, income bands, ticket-size bands, affordability ratios) &rarr;
+                                            Python EDA &amp; logistic regression.
+                                        </p>
+                                        <p>
+                                            The model is trained to mimic the bank&apos;s approval behaviour, then evaluated and
+                                            calibrated by risk and affordability segments. In short:
+                                            data in SQL &rarr; features that match how risk teams think &rarr; an ML model
+                                            that behaves like the bank.
+                                        </p>
+                                    </article>
+
+                                    <!-- SOLUTION -->
+                                    <article class="card glass card--center">
+                                        <div class="card-icon">✅</div>
+                                        <h3>Solution</h3>
+                                        <p>
+                                            Once the model reliably mirrors the existing policy, we use it as a
+                                            &ldquo;policy mirror&rdquo;: for each loan, we compare the model&apos;s predicted
+                                            approval with the historical decision.
+                                        </p>
+                                        <p>
+                                            Medium-risk segment &rarr; high-confidence predictions (very low or very high approval probability)
+                                            &rarr; loans where model and history disagree &rarr; an anomaly list that highlights:
+                                            &ldquo;this customer looks like we usually approve, but was rejected&rdquo; and
+                                            &ldquo;this customer looks like we usually reject, but was approved&rdquo;.
+                                        </p>
+                                        <p>
+                                            The output is a small, focused review queue that can be used for QA, policy refinement,
+                                            or training new underwriters.
+                                        </p>
+                                    </article>
+                                </div>
+                            </section>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <!-- DATA & PIPELINE -->
-            <div id="about" class="page">
-                <div class="container">
-                    <div class="content-wrapper">
-                          <!-- TECHNICAL ARCHITECTURE VIEW -->
-                        <section class="architecture">
-                            <div class="about-text glass architecture-card">
-                                <h2>Data &amp; pipeline - Technical architecture</h2> 
-                                <p>
-                                    The dataset is a synthetic but bank-like portfolio of ~20,000 loan applications. Each record
-                                    contains customer characteristics, risk and behavioural signals, loan economics and the final
-                                    decision <code>LoanApproved</code>.
-                                </p>
-                                <p>
-                                    The goal of the pipeline is simple:
-                                    take this raw portfolio and build a clean, reproducible flow that goes
-                                    from raw CSV &rarr; SQL &rarr; engineered features &rarr; model &rarr; anomaly flags.
+                <!-- PAGE 2: DATA & PIPELINE -->
+                <section id="page-pipeline" class="page">
+                    <div class="container">
+                        <div class="content-wrapper">
+                            <!-- Architecture: big card + 3 horizontal sub-cards -->
+                            <section class="section">
+                                <div class="card glass section-header-card">
+                                    <h2>Data &amp; pipeline – technical architecture</h2>
+                                    <p>
+                                        The dataset is a synthetic but bank-like portfolio of ~20,000 loan applications. Each record
+                                        contains customer characteristics, risk and behavioural signals, loan economics and the final
+                                        decision <code>LoanApproved</code>.
+                                    </p>
+                                    <p>
+                                        The goal of the pipeline is simple:
+                                        take this raw portfolio and build a clean, reproducible flow that goes
+                                        from raw CSV &rarr; SQL &rarr; engineered features &rarr; model &rarr; anomaly flags.
+                                    </p>
 
-                                <div class="pipeline-grid">
-                                    <!-- Row 1 -->
-                                    <div class="pipeline-card glass pipeline-row">
-                                        <div class="pipeline-left">
-                                            <div class="pipeline-step">1</div>
-                                            <h3>Data layer</h3>
+                                    <div class="pipeline-grid">
+                                        <!-- Row 1 -->
+                                        <div class="pipeline-row card glass">
+                                            <div class="pipeline-left">
+                                                <div class="pipeline-step">1</div>
+                                                <h3>Data layer</h3>
+                                            </div>
+                                            <div class="pipeline-right">
+                                                <ul>
+                                                    <li>Source: synthetic CSV with ~20k loans.</li>
+                                                    <li>Database: PostgreSQL on Neon (<code>loan_data</code> table).</li>
+                                                    <li>Access: Python via SQLAlchemy.</li>
+                                                </ul>
+                                                <p class="pipeline-arrow">
+                                                    Storage &rarr; reliable, queryable single source of truth.
+                                                </p>
+                                            </div>
                                         </div>
 
-                                        <div class="pipeline-right">
-                                            <ul>
-                                                <li>Source: synthetic CSV with ~20k loans.</li>
-                                                <li>Database: PostgreSQL on Neon (<code>loan_data</code> table).</li>
-                                                <li>Access: Python via SQLAlchemy.</li>
-                                            </ul>
-                                            <p class="pipeline-arrow">
-                                                Storage &rarr; reliable, queryable single source of truth.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Row 2 -->
-                                    <div class="pipeline-card glass pipeline-row">
-                                        <div class="pipeline-left">
-                                            <div class="pipeline-step">2</div>
-                                            <h3>Logic layer (SQL + Python)</h3>
-                                        </div>
-
-                                        <div class="pipeline-right">
-                                            <ul>
-                                                <li>SQL: banding logic and payment-to-income calculation.</li>
-                                                <li>Python: feature selection, EDA and model building.</li>
-                                                <li>scikit-learn Pipeline for preprocessing + logistic regression.</li>
-                                            </ul>
-                                            <p class="pipeline-arrow">
-                                                Raw values &rarr; business-aligned features &rarr; interpretable model.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Row 3 -->
-                                    <div class="pipeline-card glass pipeline-row">
-                                        <div class="pipeline-left">
-                                            <div class="pipeline-step">3</div>
-                                            <h3>Output &amp; presentation layer</h3>
+                                        <!-- Row 2 -->
+                                        <div class="pipeline-row card glass">
+                                            <div class="pipeline-left">
+                                                <div class="pipeline-step">2</div>
+                                                <h3>Logic layer (SQL + Python)</h3>
+                                            </div>
+                                            <div class="pipeline-right">
+                                                <ul>
+                                                    <li>SQL: banding logic and payment-to-income calculation.</li>
+                                                    <li>Python: feature selection, EDA and model building.</li>
+                                                    <li>scikit-learn Pipeline for preprocessing + logistic regression.</li>
+                                                </ul>
+                                                <p class="pipeline-arrow">
+                                                    Raw values &rarr; business-aligned features &rarr; interpretable model.
+                                                </p>
+                                            </div>
                                         </div>
 
-                                        <div class="pipeline-right">
-                                            <ul>
-                                                <li>Anomaly flags and exception types stored in the final DataFrame.</li>
-                                                <li>Plots exported to <code>figures/</code> for reuse in GitHub Pages and slides.</li>
-                                                <li>Notebook + this site tell one consistent storyline.</li>
-                                            </ul>
-                                            <p class="pipeline-arrow">
-                                                Model outputs &rarr; visual story &rarr; review-ready insights.
-                                            </p>
+                                        <!-- Row 3 -->
+                                        <div class="pipeline-row card glass">
+                                            <div class="pipeline-left">
+                                                <div class="pipeline-step">3</div>
+                                                <h3>Output &amp; presentation layer</h3>
+                                            </div>
+                                            <div class="pipeline-right">
+                                                <ul>
+                                                    <li>Anomaly flags and exception types stored in the final DataFrame.</li>
+                                                    <li>Plots exported to <code>figures/</code> for reuse in GitHub Pages and slides.</li>
+                                                    <li>Notebook + this site tell one consistent storyline.</li>
+                                                </ul>
+                                                <p class="pipeline-arrow">
+                                                    Model outputs &rarr; visual story &rarr; review-ready insights.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
 
-                        <!-- FLOWCHART STYLE PIPELINE -->
-                        <section class="timeline-section">
-                            <h2>End-to-end pipeline (step-by-step)</h2>
-                            <div class="timeline">
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">📥</div>
-                                    <div class="timeline-content">
-                                        <h3>1. Raw data in Python</h3>
-                                        <p>
-                                            Load the loan-level CSV into pandas and sanity-check:
-                                            column types, ranges, missing values and basic statistics.
-                                            At this stage nothing is modeled; we only make sure the input is shaped correctly.
-                                        </p>
-                                        <p>
-                                            <strong>Output:</strong> a clean DataFrame that matches the expected schema.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">🗄️</div>
-                                    <div class="timeline-content">
-                                        <h3>2. Persist to PostgreSQL on Neon</h3>
-                                        <p>
-                                            Use SQLAlchemy to upload the raw DataFrame to a managed Postgres instance on Neon.
-                                            The database becomes the single source of truth. Jupyter is now just a client that queries it.
-                                        </p>
-                                        <p>
-                                            <strong>Output:</strong> a <code>loan_data</code> table in the database.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">🧮</div>
-                                    <div class="timeline-content">
-                                        <h3>3. Feature engineering in SQL</h3>
-                                        <p>
-                                            Directly in SQL, we derive:
-                                        </p>
-                                        <ul>
-                                            <li><strong>Risk bands:</strong> Low / Medium / High based on <code>RiskScore</code>.</li>
-                                            <li><strong>Income bands:</strong> &lt;30k, 30–60k, 60–100k, 100k+.</li>
-                                            <li><strong>Loan amount bands:</strong> &lt;5k, 5–20k, 20–50k, 50k+.</li>
-                                            <li><strong>Duration bands:</strong> &le;12m, 13–36m, 37–60m, 60m+.</li>
-                                            <li><strong>Payment-to-income ratio:</strong> monthly payment / monthly income.</li>
-                                        </ul>
-                                        <p>
-                                            This step aligns the data with how a risk manager thinks in segments rather than raw numbers.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">🐍</div>
-                                    <div class="timeline-content">
-                                        <h3>4. Modelling dataset in Python</h3>
-                                        <p>
-                                            We query the enriched table back into pandas and build <code>model_df</code>:
-                                        </p>
-                                        <ul>
-                                            <li>All relevant numeric features (RiskScore, CreditScore, DTI, total DTI, income, amount, duration, behaviour).</li>
-                                            <li>The engineered categorical bands (risk, income, amount, duration).</li>
-                                            <li>The target <code>LoanApproved</code>.</li>
-                                        </ul>
-                                        <p>
-                                            <strong>Result:</strong> one tidy dataset used for both EDA and ML.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">🤖</div>
-                                    <div class="timeline-content">
-                                        <h3>5. Logistic regression policy model</h3>
-                                        <p>
-                                            In scikit-learn, we build a Pipeline:
-                                        </p>
-                                        <ul>
-                                            <li>Numeric features &rarr; <code>StandardScaler</code>.</li>
-                                            <li>Categorical bands &rarr; <code>OneHotEncoder</code>.</li>
-                                            <li>Model &rarr; <code>LogisticRegression(max_iter=1000)</code>.</li>
-                                        </ul>
-                                        <p>
-                                            The model is trained to predict <code>LoanApproved</code> and is evaluated
-                                            on a held-out test set (accuracy, ROC-AUC, confusion matrix and per-class metrics).
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">📐</div>
-                                    <div class="timeline-content">
-                                        <h3>6. Policy mirror &amp; anomaly flags</h3>
-                                        <p>
-                                            Using <code>predict_proba</code>, we obtain an approval probability for every loan.
-                                            These probabilities are:
-                                        </p>
-                                        <ul>
-                                            <li>Grouped into bands (&lt;10%, 10–90%, &gt;90%) to check calibration.</li>
-                                            <li>Compared against the actual decisions in the Medium-risk segment.</li>
-                                        </ul>
-                                        <p>
-                                            High-confidence disagreements between model and history are tagged as anomalies,
-                                            with separate flags for &ldquo;should probably have been approved&rdquo;
-                                            and &ldquo;should probably have been rejected&rdquo;.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item glass">
-                                    <div class="timeline-icon">📊</div>
-                                    <div class="timeline-content">
-                                        <h3>7. Visual outputs &amp; story</h3>
-                                        <p>
-                                            Finally, we produce visuals that summarise the entire pipeline:
-                                            policy heatmaps, affordability boxplots, calibration bars and exception counts.
-                                            These plots are exported as PNGs and reused in this page and in the notebook.
-                                        </p>
-                                        <p>
-                                            The visuals are the &ldquo;front-end&rdquo; of the project:
-                                            they carry the story for business and risk stakeholders.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MODEL & INSIGHTS -->
-            <div id="services" class="page">
-                <div class="container">
-                    <div class="content-wrapper">
-                        <section class="hero glass">
-                            <h1>Model &amp; insights</h1>
-                            <p>
-                                The core model is a logistic regression trained to mimic the bank&apos;s approval decisions.
-                                The power of the project lies in how this model is interpreted and used:
-                                first to understand policy, then to spot anomalies.
-                            </p>
-                        </section>
-
-                        <!-- VIZ 1: Policy heatmap -->
-                        <section class="viz-section">
-                            <div class="viz-row">
-                                <div class="viz-image glass">
-                                    <h3>1. Policy heatmap: risk vs income</h3>
-                                    <img src="figures/heatmap_risk_income.png" alt="Heatmap: approval vs risk and income" />
-                                </div>
-                                <div class="viz-text glass">
-                                    <h3>What we did &amp; what it shows</h3>
-                                    <ul>
-                                        <li>
-                                            <strong>How it&apos;s coded:</strong> in <code>model_df</code>, we group by
-                                            <code>risk_band</code> and <code>income_band</code>, compute the mean of
-                                            <code>LoanApproved</code> (i.e. approval rate), and unstack to a matrix.
-                                            That matrix is passed into a heatmap.
-                                        </li>
-                                        <li>
-                                            <strong>What the output shows:</strong>
-                                            Low-risk customers are almost always approved across income levels, High-risk
-                                            customers almost never. Medium-risk customers show a gradient by income band.
-                                        </li>
-                                        <li>
-                                            <strong>How to read the visual:</strong>
-                                            each cell is the share of applications approved in that segment. Darker/lighter
-                                            colours show where the bank is more generous or conservative. This is the
-                                            &ldquo;top-level fingerprint&rdquo; of the approval policy.
-                                        </li>
-                                        <li>
-                                            <strong>Why it matters:</strong>
-                                            it anchors conversations with stakeholders:
-                                            &ldquo;Is this the risk appetite you expected across income groups?&rdquo;
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- VIZ 2: Affordability lens -->
-                        <section class="viz-section">
-                            <div class="viz-row">
-                                <div class="viz-image glass">
-                                    <h3>2. Affordability lens: Medium-risk PTI</h3>
-                                    <img src="figures/boxplot_medium_pti.png" alt="Boxplot: PTI by decision in Medium risk" />
-                                </div>
-                                <div class="viz-text glass">
-                                    <h3>How affordability behaves in practice</h3>
-                                    <ul>
-                                        <li>
-                                            <strong>How it&apos;s coded:</strong>
-                                            we filter to Medium-risk customers (<code>risk_band == "Medium"</code>),
-                                            then plot the distribution of <code>payment_to_income_ratio</code> split by
-                                            <code>LoanApproved</code> = 0/1 using a boxplot.
-                                        </li>
-                                        <li>
-                                            <strong>What the output shows:</strong>
-                                            approved Medium-risk customers tend to have lower payment-to-income ratios than
-                                            rejected ones, but there is overlap. Some rejected cases look affordable;
-                                            some approved cases sit at relatively heavier burdens.
-                                        </li>
-                                        <li>
-                                            <strong>How to read the visual:</strong>
-                                            median lines, quartiles and tails show how strict or relaxed the bank is in
-                                            applying affordability rules to Medium-risk customers.
-                                        </li>
-                                        <li>
-                                            <strong>Why it matters:</strong>
-                                            this is exactly the area where policy tends to drift over time and where
-                                            anomaly detection later adds value.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- VIZ 3: Calibration -->
-                        <section class="viz-section">
-                            <div class="viz-row">
-                                <div class="viz-image glass">
-                                    <h3>3. Model calibration by probability band</h3>
-                                    <img src="figures/bar_prob_band_calibration.png" alt="Bar chart: approval by probability band" />
-                                </div>
-                                <div class="viz-text glass">
-                                    <h3>Can we trust the model probabilities?</h3>
-                                    <ul>
-                                        <li>
-                                            <strong>How it&apos;s coded:</strong>
-                                            after training, we compute <code>pred_approval_prob</code> from
-                                            <code>clf.predict_proba(X)</code>. We then bucket these probabilities into
-                                            three bands: &lt;10%, 10–90%, &gt;90%. For each band, we calculate the
-                                            actual approval rate (<code>LoanApproved</code> mean).
-                                        </li>
-                                        <li>
-                                            <strong>What the output shows:</strong>
-                                            the low band has almost no approvals, the high band has almost all approvals,
-                                            and the middle band sits in between. This means the model probabilities are
-                                            well aligned with historical decisions.
-                                        </li>
-                                        <li>
-                                            <strong>How to read the visual:</strong>
-                                            each bar is a probability segment; the height is the true approval rate in
-                                            that segment. We want &ldquo;low ≈ 0%&rdquo; and &ldquo;high ≈ 100%&rdquo;.
-                                        </li>
-                                        <li>
-                                            <strong>Why it matters:</strong>
-                                            once calibration looks reasonable, using the model as a &ldquo;policy mirror&rdquo;
-                                            (and setting high-confidence thresholds like &lt;=10%, &gt;=90%) becomes defensible.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- VIZ 4: Exceptions / anomalies -->
-                        <section class="viz-section">
-                            <div class="viz-row">
-                                <div class="viz-image glass">
-                                    <h3>4. Exception patterns: high-confidence anomalies</h3>
-                                    <img src="figures/bar_exceptions_counts.png" alt="Bar chart: high-confidence exceptions" />
-                                </div>
-                                <div class="viz-text glass">
-                                    <h3>Where model and history disagree</h3>
-                                    <ul>
-                                        <li>
-                                            <strong>How it&apos;s coded:</strong>
-                                            we focus on Medium-risk customers and create flags:
-                                            <code>high_conf_under_approved</code> for cases where
-                                            <code>pred_approval_prob &gt;= 0.9</code> but <code>LoanApproved == 0</code>,
-                                            and <code>high_conf_over_approved</code> for
-                                            <code>pred_approval_prob &lt;= 0.1</code> but <code>LoanApproved == 1</code>.
-                                            We then count each type.
-                                        </li>
-                                        <li>
-                                            <strong>What the output shows:</strong>
-                                            there are very few of these high-confidence disagreements.
-                                            That&apos;s good: the model mostly agrees with history, and the anomaly list is short.
-                                        </li>
-                                        <li>
-                                            <strong>How to read the visual:</strong>
-                                            each bar is an exception type:
-                                            &ldquo;model says approve, history says reject&rdquo; vs
-                                            &ldquo;model says reject, history says approve&rdquo;.
-                                            The height shows how many loans fall into each bucket.
-                                        </li>
-                                        <li>
-                                            <strong>Why it matters:</strong>
-                                            these are the cases that deserve human attention:
-                                            either the model highlights customers that may have been unnecessarily rejected,
-                                            or approvals that are off-pattern given the bank&apos;s usual behaviour.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-
-            <!-- REFLECTION & LINKS (placeholder for now) -->
-            <div id="contact" class="page">
-                <div class="container">
-                    <div class="content-wrapper">
-                        <section class="contact-grid">
-                            <div class="contact-form glass">
-                                <h2>Reflection &amp; extensions</h2>
-                                <p>
-                                    This space is reserved for deeper reflection on:
-                                </p>
-                                <ul>
-                                    <li>How this approach would change with real default / loss data.</li>
-                                    <li>How to incorporate cost of misclassification into the thresholds.</li>
-                                    <li>How to turn this notebook into a scheduled, productionised process.</li>
-                                </ul>
-                                <p>
-                                    For now, the project is intentionally focused: one dataset, one interpretable model,
-                                    and a clear path from policy understanding to anomaly detection.
-                                </p>
-                            </div>
-
-                            <div class="contact-info glass">
-                                <h2>Links</h2>
-                                <div class="contact-items">
-                                    <div class="contact-item">
-                                        <div class="contact-item-icon">💼</div>
-                                        <div class="contact-item-text">
-                                            <h4>GitHub repo</h4>
+                            <!-- Timeline: end-to-end pipeline -->
+                            <section class="section">
+                                <h2 class="section-title">End-to-end pipeline (step-by-step)</h2>
+                                <div class="timeline">
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">📥</div>
+                                        <div class="timeline-content">
+                                            <h3>1. Raw data in Python</h3>
                                             <p>
-                                                <a href="https://github.com/MNN1999/ML-Loan-Analysis" target="_blank" rel="noopener">
-                                                    github.com/MNN1999/ML-Loan-Analysis
-                                                </a>
+                                                Load the loan-level CSV into pandas and sanity-check:
+                                                column types, ranges, missing values and basic statistics.
+                                                At this stage nothing is modeled; we only make sure the input is shaped correctly.
                                             </p>
+                                            <p><strong>Output:</strong> a clean DataFrame that matches the expected schema.</p>
                                         </div>
-                                    </div>
-                                    <div class="contact-item">
-                                        <div class="contact-item-icon">🔗</div>
-                                        <div class="contact-item-text">
-                                            <h4>LinkedIn</h4>
-                                            <p>
-                                                <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">
-                                                    linkedin.com/in/YOUR-LINKEDIN
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="contact-item">
-                                        <div class="contact-item-icon">📧</div>
-                                        <div class="contact-item-text">
-                                            <h4>Email</h4>
-                                            <p>you@example.com</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p style="margin-top: 1.5rem;">
-                                    The recommended reading order is:
-                                    Overview &rarr; Data &amp; pipeline &rarr; Model &amp; insights &rarr; Notebook on GitHub.
-                                </p>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
+                                    </article>
 
-            <footer class="glass">
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">🗄️</div>
+                                        <div class="timeline-content">
+                                            <h3>2. Persist to PostgreSQL on Neon</h3>
+                                            <p>
+                                                Use SQLAlchemy to upload the raw DataFrame to a managed Postgres instance on Neon.
+                                                The database becomes the single source of truth. Jupyter is now just a client that queries it.
+                                            </p>
+                                            <p><strong>Output:</strong> a <code>loan_data</code> table in the database.</p>
+                                        </div>
+                                    </article>
+
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">🧮</div>
+                                        <div class="timeline-content">
+                                            <h3>3. Feature engineering in SQL</h3>
+                                            <p>Directly in SQL, we derive:</p>
+                                            <ul>
+                                                <li><strong>Risk bands:</strong> Low / Medium / High based on <code>RiskScore</code>.</li>
+                                                <li><strong>Income bands:</strong> &lt;30k, 30–60k, 60–100k, 100k+.</li>
+                                                <li><strong>Loan amount bands:</strong> &lt;5k, 5–20k, 20–50k, 50k+.</li>
+                                                <li><strong>Duration bands:</strong> &le;12m, 13–36m, 37–60m, 60m+.</li>
+                                                <li><strong>Payment-to-income ratio:</strong> monthly payment / monthly income.</li>
+                                            </ul>
+                                            <p>
+                                                This step aligns the data with how a risk manager thinks in segments rather than raw numbers.
+                                            </p>
+                                        </div>
+                                    </article>
+
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">🐍</div>
+                                        <div class="timeline-content">
+                                            <h3>4. Modelling dataset in Python</h3>
+                                            <p>We query the enriched table back into pandas and build <code>model_df</code>:</p>
+                                            <ul>
+                                                <li>All relevant numeric features (RiskScore, CreditScore, DTI, total DTI, income, amount, duration, behaviour).</li>
+                                                <li>The engineered categorical bands (risk, income, amount, duration).</li>
+                                                <li>The target <code>LoanApproved</code>.</li>
+                                            </ul>
+                                            <p><strong>Result:</strong> one tidy dataset used for both EDA and ML.</p>
+                                        </div>
+                                    </article>
+
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">🤖</div>
+                                        <div class="timeline-content">
+                                            <h3>5. Logistic regression policy model</h3>
+                                            <p>In scikit-learn, we build a Pipeline:</p>
+                                            <ul>
+                                                <li>Numeric features &rarr; <code>StandardScaler</code>.</li>
+                                                <li>Categorical bands &rarr; <code>OneHotEncoder</code>.</li>
+                                                <li>Model &rarr; <code>LogisticRegression(max_iter=1000)</code>.</li>
+                                            </ul>
+                                            <p>
+                                                The model is trained to predict <code>LoanApproved</code> and is evaluated
+                                                on a held-out test set (accuracy, ROC-AUC, confusion matrix and per-class metrics).
+                                            </p>
+                                        </div>
+                                    </article>
+
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">📐</div>
+                                        <div class="timeline-content">
+                                            <h3>6. Policy mirror &amp; anomaly flags</h3>
+                                            <p>
+                                                Using <code>predict_proba</code>, we obtain an approval probability for every loan.
+                                                These probabilities are:
+                                            </p>
+                                            <ul>
+                                                <li>Grouped into bands (&lt;10%, 10–90%, &gt;90%) to check calibration.</li>
+                                                <li>Compared against the actual decisions in the Medium-risk segment.</li>
+                                            </ul>
+                                            <p>
+                                                High-confidence disagreements between model and history are tagged as anomalies,
+                                                with separate flags for &ldquo;should probably have been approved&rdquo;
+                                                and &ldquo;should probably have been rejected&rdquo;.
+                                            </p>
+                                        </div>
+                                    </article>
+
+                                    <article class="timeline-item card glass">
+                                        <div class="timeline-icon">📊</div>
+                                        <div class="timeline-content">
+                                            <h3>7. Visual outputs &amp; story</h3>
+                                            <p>
+                                                Finally, we produce visuals that summarise the entire pipeline:
+                                                policy heatmaps, affordability boxplots, calibration bars and exception counts.
+                                                These plots are exported as PNGs and reused in this page and in the notebook.
+                                            </p>
+                                            <p>
+                                                The visuals are the &ldquo;front-end&rdquo; of the project:
+                                                they carry the story for business and risk stakeholders.
+                                            </p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE 3: MODEL & INSIGHTS -->
+                <section id="page-model" class="page">
+                    <div class="container">
+                        <div class="content-wrapper">
+                            <section class="section glass section-intro">
+                                <h1>Model &amp; insights</h1>
+                                <p>
+                                    The core model is a logistic regression trained to mimic the bank&apos;s approval decisions.
+                                    The power of the project lies in how this model is interpreted and used:
+                                    first to understand policy, then to spot anomalies.
+                                </p>
+                            </section>
+
+                            <!-- VIZ ROW 1 -->
+                            <section class="section viz-section">
+                                <div class="viz-row">
+                                    <article class="card glass viz-image">
+                                        <h3>1. Policy heatmap: risk vs income</h3>
+                                        <img src="figures/heatmap_risk_income.png"
+                                             alt="Heatmap: approval vs risk and income" />
+                                    </article>
+
+                                    <article class="card glass viz-text">
+                                        <h3>What we did &amp; what it shows</h3>
+                                        <ul>
+                                            <li>
+                                                <strong>How it&apos;s coded:</strong> in <code>model_df</code>, we group by
+                                                <code>risk_band</code> and <code>income_band</code>, compute the mean of
+                                                <code>LoanApproved</code> (i.e. approval rate), and unstack to a matrix.
+                                                That matrix is passed into a heatmap.
+                                            </li>
+                                            <li>
+                                                <strong>What the output shows:</strong>
+                                                Low-risk customers are almost always approved across income levels, High-risk
+                                                customers almost never. Medium-risk customers show a gradient by income band.
+                                            </li>
+                                            <li>
+                                                <strong>How to read the visual:</strong>
+                                                each cell is the share of applications approved in that segment. Darker/lighter
+                                                colours show where the bank is more generous or conservative. This is the
+                                                &ldquo;top-level fingerprint&rdquo; of the approval policy.
+                                            </li>
+                                            <li>
+                                                <strong>Why it matters:</strong>
+                                                it anchors conversations with stakeholders:
+                                                &ldquo;Is this the risk appetite you expected across income groups?&rdquo;
+                                            </li>
+                                        </ul>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <!-- VIZ ROW 2 -->
+                            <section class="section viz-section">
+                                <div class="viz-row">
+                                    <article class="card glass viz-image">
+                                        <h3>2. Affordability lens: Medium-risk PTI</h3>
+                                        <img src="figures/boxplot_medium_pti.png"
+                                             alt="Boxplot: PTI by decision in Medium risk" />
+                                    </article>
+
+                                    <article class="card glass viz-text">
+                                        <h3>How affordability behaves in practice</h3>
+                                        <ul>
+                                            <li>
+                                                <strong>How it&apos;s coded:</strong>
+                                                we filter to Medium-risk customers (<code>risk_band == "Medium"</code>),
+                                                then plot the distribution of <code>payment_to_income_ratio</code> split by
+                                                <code>LoanApproved</code> = 0/1 using a boxplot.
+                                            </li>
+                                            <li>
+                                                <strong>What the output shows:</strong>
+                                                approved Medium-risk customers tend to have lower payment-to-income ratios than
+                                                rejected ones, but there is overlap. Some rejected cases look affordable;
+                                                some approved cases sit at relatively heavier burdens.
+                                            </li>
+                                            <li>
+                                                <strong>How to read the visual:</strong>
+                                                median lines, quartiles and tails show how strict or relaxed the bank is in
+                                                applying affordability rules to Medium-risk customers.
+                                            </li>
+                                            <li>
+                                                <strong>Why it matters:</strong>
+                                                this is exactly the area where policy tends to drift over time and where
+                                                anomaly detection later adds value.
+                                            </li>
+                                        </ul>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <!-- VIZ ROW 3 -->
+                            <section class="section viz-section">
+                                <div class="viz-row">
+                                    <article class="card glass viz-image">
+                                        <h3>3. Model calibration by probability band</h3>
+                                        <img src="figures/bar_prob_band_calibration.png"
+                                             alt="Bar chart: approval by probability band" />
+                                    </article>
+
+                                    <article class="card glass viz-text">
+                                        <h3>Can we trust the model probabilities?</h3>
+                                        <ul>
+                                            <li>
+                                                <strong>How it&apos;s coded:</strong>
+                                                after training, we compute <code>pred_approval_prob</code> from
+                                                <code>clf.predict_proba(X)</code>. We then bucket these probabilities into
+                                                three bands: &lt;10%, 10–90%, &gt;90%. For each band, we calculate the
+                                                actual approval rate (<code>LoanApproved</code> mean).
+                                            </li>
+                                            <li>
+                                                <strong>What the output shows:</strong>
+                                                the low band has almost no approvals, the high band has almost all approvals,
+                                                and the middle band sits in between. This means the model probabilities are
+                                                well aligned with historical decisions.
+                                            </li>
+                                            <li>
+                                                <strong>How to read the visual:</strong>
+                                                each bar is a probability segment; the height is the true approval rate in
+                                                that segment. We want &ldquo;low ≈ 0%&rdquo; and &ldquo;high ≈ 100%&rdquo;.
+                                            </li>
+                                            <li>
+                                                <strong>Why it matters:</strong>
+                                                once calibration looks reasonable, using the model as a &ldquo;policy mirror&rdquo;
+                                                (and setting high-confidence thresholds like &lt;=10%, &gt;=90%) becomes defensible.
+                                            </li>
+                                        </ul>
+                                    </article>
+                                </div>
+                            </section>
+
+                            <!-- VIZ ROW 4 -->
+                            <section class="section viz-section">
+                                <div class="viz-row">
+                                    <article class="card glass viz-image">
+                                        <h3>4. Exception patterns: high-confidence anomalies</h3>
+                                        <img src="figures/bar_exceptions_counts.png"
+                                             alt="Bar chart: high-confidence exceptions" />
+                                    </article>
+
+                                    <article class="card glass viz-text">
+                                        <h3>Where model and history disagree</h3>
+                                        <ul>
+                                            <li>
+                                                <strong>How it&apos;s coded:</strong>
+                                                we focus on Medium-risk customers and create flags:
+                                                <code>high_conf_under_approved</code> for cases where
+                                                <code>pred_approval_prob &gt;= 0.9</code> but <code>LoanApproved == 0</code>,
+                                                and <code>high_conf_over_approved</code> for
+                                                <code>pred_approval_prob &lt;= 0.1</code> but <code>LoanApproved == 1</code>.
+                                                We then count each type.
+                                            </li>
+                                            <li>
+                                                <strong>What the output shows:</strong>
+                                                there are very few of these high-confidence disagreements.
+                                                That&apos;s good: the model mostly agrees with history, and the anomaly list is short.
+                                            </li>
+                                            <li>
+                                                <strong>How to read the visual:</strong>
+                                                each bar is an exception type:
+                                                &ldquo;model says approve, history says reject&rdquo; vs
+                                                &ldquo;model says reject, history says approve&rdquo;.
+                                                The height shows how many loans fall into each bucket.
+                                            </li>
+                                            <li>
+                                                <strong>Why it matters:</strong>
+                                                these are the cases that deserve human attention:
+                                                either the model highlights customers that may have been unnecessarily rejected,
+                                                or approvals that are off-pattern given the bank&apos;s usual behaviour.
+                                            </li>
+                                        </ul>
+                                    </article>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE 4: REFLECTION & LINKS -->
+                <section id="page-reflection" class="page">
+                    <div class="container">
+                        <div class="content-wrapper">
+                            <section class="section grid-2">
+                                <article class="card glass">
+                                    <h2>Reflection &amp; extensions</h2>
+                                    <p>This space is reserved for deeper reflection on:</p>
+                                    <ul>
+                                        <li>How this approach would change with real default / loss data.</li>
+                                        <li>How to incorporate cost of misclassification into the thresholds.</li>
+                                        <li>How to turn this notebook into a scheduled, productionised process.</li>
+                                    </ul>
+                                    <p>
+                                        For now, the project is intentionally focused: one dataset, one interpretable model,
+                                        and a clear path from policy understanding to anomaly detection.
+                                    </p>
+                                </article>
+
+                                <article class="card glass">
+                                    <h2>Links</h2>
+                                    <div class="stack stack--gap-md">
+                                        <div class="contact-item">
+                                            <div class="contact-item-icon">💼</div>
+                                            <div class="contact-item-text">
+                                                <h4>GitHub repo</h4>
+                                                <p>
+                                                    <a href="https://github.com/MNN1999/ML-Loan-Analysis"
+                                                       target="_blank"
+                                                       rel="noopener">
+                                                        github.com/MNN1999/ML-Loan-Analysis
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="contact-item">
+                                            <div class="contact-item-icon">🔗</div>
+                                            <div class="contact-item-text">
+                                                <h4>LinkedIn</h4>
+                                                <p>
+                                                    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN"
+                                                       target="_blank"
+                                                       rel="noopener">
+                                                        linkedin.com/in/YOUR-LINKEDIN
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="contact-item">
+                                            <div class="contact-item-icon">📧</div>
+                                            <div class="contact-item-text">
+                                                <h4>Email</h4>
+                                                <p>you@example.com</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-lg">
+                                        The recommended reading order is:
+                                        Overview &rarr; Data &amp; pipeline &rarr; Model &amp; insights &rarr; Notebook on GitHub.
+                                    </p>
+                                </article>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="site-footer glass">
                 <div class="container">
                     <div class="footer-content">
-                        <div class="footer-logo" onclick="showPage('home')">
+                        <div class="footer-logo" data-page-target="page-overview">
                             <div class="logo-icon">
                                 <svg viewBox="0 0 48 48" fill="white" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="16" cy="16" r="5" opacity="0.9"/>
@@ -670,20 +615,22 @@ https://templatemo.com/tm-592-glossy-touch
                             </div>
                             <span>Loan Approval Policy Modeling + Anomaly Detection</span>
                         </div>
+
                         <div class="footer-links">
-                            <a href="#" onclick="showPage('about')">Data &amp; pipeline</a>
-                            <a href="#" onclick="showPage('services')">Model &amp; insights</a>
-                            <a href="#" onclick="showPage('contact')">Reflection</a>
+                            <a href="#" class="nav-link" data-page-target="page-pipeline">Data &amp; pipeline</a>
+                            <a href="#" class="nav-link" data-page-target="page-model">Model &amp; insights</a>
+                            <a href="#" class="nav-link" data-page-target="page-reflection">Reflection</a>
                         </div>
+
                         <div class="copyright">
-                            &copy; 2025 Loan Approval Policy Modeling + Anomaly Detection. All rights reserved. 
-                            Template by <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                            &copy; 2025 Loan Approval Policy Modeling + Anomaly Detection. All rights reserved.
                         </div>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
-<script src="templatemo-glossy-touch.js"></script>
+
+    <script src="templatemo-glossy-touch.js"></script>
 </body>
 </html>
