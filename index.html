@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Approval Policy Modelling + Anomaly Detection</title>
+    <title>Loan Approval Policy Modeling + Anomaly Detection</title>
     
     <link rel="stylesheet" href="templatemo-glossy-touch.css">
 <!--
@@ -90,7 +90,7 @@ https://templatemo.com/tm-592-glossy-touch
                                     <circle cx="40" cy="40" r="1" opacity="0.6"/>
                                 </svg>
                             </div>
-                            <span>Loan Approval Policy Modelling + Anomaly Detection</span>
+                            <span>Loan Approval Policy Modeling + Anomaly Detection</span>
                         </div>
                         <div class="nav-links">
                             <a href="#" onclick="showPage('home')" class="active">Overview</a>
@@ -112,7 +112,7 @@ https://templatemo.com/tm-592-glossy-touch
                                 <img src="figures/bar_feature_importance_top10.png" alt="Top 10 feature importance coefficients" />
                             </div>
                             <div class="hero-content">
-                                <h1>Loan Approval Policy Modelling + Anomaly Detection</h1>
+                                <h1>Loan Approval Policy Modeling + Anomaly Detection</h1>
                                 <p>
                                     This project takes a portfolio of ~20k loan applications and uses a simple, interpretable
                                     model to learn the bank&apos;s implicit loan approval policy. Once that policy is learned,
@@ -191,8 +191,9 @@ https://templatemo.com/tm-592-glossy-touch
             <div id="about" class="page">
                 <div class="container">
                     <div class="content-wrapper">
-                        <section class="hero glass">
-                                <h1>Data &amp; pipeline – from Dataset CSV to anomaly flags</h1>
+                        <section class="about-content">
+                            <div class="about-text glass">
+                                <h2>Data &amp; pipeline – from CSV to anomaly flags</h2>
                                 <p>
                                     The dataset is a synthetic but bank-like portfolio of ~20,000 loan applications. Each record
                                     contains customer characteristics, risk and behavioural signals, loan economics and the final
@@ -335,76 +336,54 @@ https://templatemo.com/tm-592-glossy-touch
                         </section>
 
                         <!-- TECHNICAL ARCHITECTURE VIEW -->
-<div class="content-wrapper">
-  <section class="about-content architecture">
-    <div class="about-text glass architecture-card">
-      <h2>Technical architecture at a glance</h2>
-      <p>
-        The same pipeline can also be viewed in layers – similar to how a production system would be structured.
-      </p>
+                        <section class="about-content">
+                            <div class="about-text glass">
+                                <h2>Technical architecture at a glance</h2>
+                                <p>
+                                    The same pipeline can also be viewed in layers – similar to how a production system would be structured.
+                                </p>
+                                <div class="pipeline-grid">
+                                    <div class="pipeline-card glass">
+                                        <h3>1. Data layer</h3>
+                                        <ul>
+                                            <li>Source: synthetic CSV with ~20k loans.</li>
+                                            <li>Database: PostgreSQL on Neon (<code>loan_data</code> table).</li>
+                                            <li>Access: Python via SQLAlchemy.</li>
+                                        </ul>
+                                        <p class="pipeline-arrow">
+                                            Storage &rarr; reliable, queryable single source of truth.
+                                        </p>
+                                    </div>
 
-      <div class="pipeline-grid">
-        <!-- Row 1 -->
-        <div class="pipeline-card glass pipeline-row">
-          <div class="pipeline-left">
-            <div class="pipeline-step">1</div>
-            <h3>Data layer</h3>
-          </div>
+                                    <div class="pipeline-card glass">
+                                        <h3>2. Logic layer (SQL + Python)</h3>
+                                        <ul>
+                                            <li>SQL: banding logic and payment-to-income calculation.</li>
+                                            <li>Python: feature selection, EDA and model building.</li>
+                                            <li>scikit-learn Pipeline for preprocessing + logistic regression.</li>
+                                        </ul>
+                                        <p class="pipeline-arrow">
+                                            Raw values &rarr; business-aligned features &rarr; interpretable model.
+                                        </p>
+                                    </div>
 
-          <div class="pipeline-right">
-            <ul>
-              <li>Source: synthetic CSV with ~20k loans.</li>
-              <li>Database: PostgreSQL on Neon (<code>loan_data</code> table).</li>
-              <li>Access: Python via SQLAlchemy.</li>
-            </ul>
-            <p class="pipeline-arrow">
-              Storage &rarr; reliable, queryable single source of truth.
-            </p>
-          </div>
-        </div>
-
-        <!-- Row 2 -->
-        <div class="pipeline-card glass pipeline-row">
-          <div class="pipeline-left">
-            <div class="pipeline-step">2</div>
-            <h3>Logic layer (SQL + Python)</h3>
-          </div>
-
-          <div class="pipeline-right">
-            <ul>
-              <li>SQL: banding logic and payment-to-income calculation.</li>
-              <li>Python: feature selection, EDA and model building.</li>
-              <li>scikit-learn Pipeline for preprocessing + logistic regression.</li>
-            </ul>
-            <p class="pipeline-arrow">
-              Raw values &rarr; business-aligned features &rarr; interpretable model.
-            </p>
-          </div>
-        </div>
-
-        <!-- Row 3 -->
-        <div class="pipeline-card glass pipeline-row">
-          <div class="pipeline-left">
-            <div class="pipeline-step">3</div>
-            <h3>Output &amp; presentation layer</h3>
-          </div>
-
-          <div class="pipeline-right">
-            <ul>
-              <li>Anomaly flags and exception types stored in the final DataFrame.</li>
-              <li>Plots exported to <code>figures/</code> for reuse in GitHub Pages and slides.</li>
-              <li>Notebook + this site tell one consistent storyline.</li>
-            </ul>
-            <p class="pipeline-arrow">
-              Model outputs &rarr; visual story &rarr; review-ready insights.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
+                                    <div class="pipeline-card glass">
+                                        <h3>3. Output &amp; presentation layer</h3>
+                                        <ul>
+                                            <li>Anomaly flags and exception types stored in the final DataFrame.</li>
+                                            <li>Plots exported to <code>figures/</code> for reuse in GitHub Pages and slides.</li>
+                                            <li>Notebook + this site tell one consistent storyline.</li>
+                                        </ul>
+                                        <p class="pipeline-arrow">
+                                            Model outputs &rarr; visual story &rarr; review-ready insights.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
 
             <!-- MODEL & INSIGHTS -->
             <div id="services" class="page">
@@ -679,8 +658,3 @@ https://templatemo.com/tm-592-glossy-touch
 <script src="templatemo-glossy-touch.js"></script>
 </body>
 </html>
-
-
-
-
-
