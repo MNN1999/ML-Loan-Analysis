@@ -5,7 +5,7 @@
    ===================================================================== */
 
 :root {
-    --color-page-bg: #d6ccc2;
+    --color-page-bg: #f4efe6;
     --color-text-main: #111111;
     --color-text-muted: rgba(17, 17, 17, 0.75);
 
@@ -193,6 +193,7 @@ a:hover {
 
 .site-header {
     margin-top: 10px;
+    padding-block: 8px;
 }
 
 .nav {
@@ -594,5 +595,6 @@ a:hover {
         padding: 20px 18px;
     }
 }
+
 
 
