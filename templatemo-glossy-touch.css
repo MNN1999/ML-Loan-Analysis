@@ -248,7 +248,6 @@ a:hover {
     text-decoration: none;
     color: rgba(17, 17, 17, 0.9);
     background: transparent;
-    /* animate the same properties as cards */
     transition:
         background 0.2s ease,
         color 0.2s ease,
@@ -256,11 +255,19 @@ a:hover {
         box-shadow 0.2s ease;
 }
 
-.nav-link:hover,
+/* Selected tab: looks active but stays “flat” */
 .nav-link.is-active {
     background: rgba(0, 0, 0, 0.06);
     color: var(--color-text-main);
-    transform: translateY(-3px);              /* lift like the cards */
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Hover bump only on non-active tabs */
+.nav-link:not(.is-active):hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text-main);
+    transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 }
 
@@ -603,6 +610,7 @@ a:hover {
         padding: 20px 18px;
     }
 }
+
 
 
 
