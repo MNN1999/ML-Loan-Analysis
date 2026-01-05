@@ -873,3 +873,31 @@ button[type="submit"] {
         flex-basis: auto;
     }
 }
+
+/* Viz section layout + spacing */
+.viz-section {
+    margin-top: 40px;
+}
+
+.viz-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1.4fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* Give the glass cards comfortable padding */
+.viz-image,
+.viz-text {
+    padding: 24px 28px;   /* <-- this is what stops text touching the border */
+}
+
+/* Center headings the way you wanted */
+.viz-image {
+    text-align: center;   /* centers title + image */
+}
+
+.viz-text h3 {
+    text-align: center;   /* centers only the heading, bullets stay left */
+}
+
