@@ -1,4 +1,4 @@
-// templatemo-glossy-touch.js
+// template.js
 
 document.addEventListener('DOMContentLoaded', () => {
     // ===============================
@@ -168,3 +168,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(fadeStyle);
     }
 });
+
