@@ -18,7 +18,7 @@ https://templatemo.com/tm-592-glossy-touch
 }
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #e7bb9b;
+    background: #ffffff; /* was #e7bb9b */
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -34,9 +34,9 @@ body {
 }
 .shape {
     position: absolute;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.035); /* was rgba(255, 255, 255, 0.08); */
     animation: float 6s ease-in-out infinite;
-    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* was light-on-dark */
 }
 .shape:nth-child(1) {
     width: 120px;
@@ -104,19 +104,20 @@ body {
 }
 /* Glass container styles */
 .glass {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(20, 20, 24, 0.12); /* dark-tinted glass */
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.14);
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    color: #111111; /* default dark text inside glass */
 }
 .glass:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(20, 20, 24, 0.18);
     transform: translateY(-5px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
 /* Header styles */
 header {
@@ -136,8 +137,8 @@ nav {
 .logo {
     font-size: 32px;
     font-weight: bold;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: #111111; /* was white */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -158,14 +159,14 @@ nav {
 }
 .logo:hover .logo-icon svg {
     transform: scale(1.1) translateY(-2px);
-    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.4));
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
 }
 .nav-links {
     display: flex;
     gap: 30px;
 }
 .nav-links a {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(17, 17, 17, 0.9); /* was rgba(255, 255, 255, 0.9) */
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -173,13 +174,13 @@ nav {
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25); /* was white */
 }
 .nav-links a:hover,
 .nav-links a.active {
-    color: white;
-    background: rgba(255, 255, 255, 0.1);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: #111111;
+    background: rgba(0, 0, 0, 0.06); /* was light white overlay */
+    text-shadow: none;
 }
 /* Page system */
 .page {
@@ -220,32 +221,32 @@ nav {
 }
 .hero h1 {
     font-size: 2.8rem;
-    color: white;
+    color: #111111; /* was white */
     margin-bottom: 20px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     line-height: 1.2;
 }
 .hero p {
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(17, 17, 17, 0.9); /* was rgba white */
     margin-bottom: 30px;
     line-height: 1.6;
 }
 .cta-button {
     display: inline-block;
     padding: 15px 40px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+    background: rgba(0, 0, 0, 0.06); /* was rgba white */
+    color: #111111; /* was white */
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 0, 0, 0.12); /* was white */
     cursor: pointer;
 }
 .cta-button:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.1);
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -262,13 +263,13 @@ button[type="submit"] {
 .feature-card {
     padding: 40px 30px;
     text-align: center;
-    color: white;
+    color: #111111; /* was white */
 }
 .feature-icon {
     width: 60px;
     height: 60px;
     margin: 0 auto 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.06); /* was white tint */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -278,10 +279,10 @@ button[type="submit"] {
 .feature-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: white;
+    color: #111111;
 }
 .feature-card p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
     line-height: 1.6;
 }
 /* About page styles */
@@ -294,17 +295,17 @@ button[type="submit"] {
 }
 .about-text {
     padding: 40px;
-    color: white;
+    color: #111111; /* was white */
 }
 .about-text h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 .about-text p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(17, 17, 17, 0.9); /* was rgba white */
     margin-bottom: 20px;
 }
 .stats {
@@ -316,17 +317,17 @@ button[type="submit"] {
 .stat-card {
     text-align: center;
     padding: 30px;
-    color: white;
+    color: #111111;
 }
 .stat-number {
     font-size: 3rem;
     font-weight: bold;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: #111111;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 .stat-label {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
     margin-top: 10px;
 }
 /* Team section styles */
@@ -335,10 +336,10 @@ button[type="submit"] {
 }
 .team-section h2 {
     font-size: 2.5rem;
-    color: white;
+    color: #111111;
     text-align: center;
     margin-bottom: 50px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 .team-grid {
     display: grid;
@@ -348,7 +349,7 @@ button[type="submit"] {
 .team-member {
     padding: 40px 30px;
     text-align: center;
-    color: white;
+    color: #111111;
     transition: all 0.3s ease;
 }
 .team-member:hover {
@@ -357,7 +358,7 @@ button[type="submit"] {
 .team-avatar {
     width: 120px;
     height: 120px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.05); /* was white tint */
     border-radius: 50%;
     margin: 0 auto 20px;
     display: flex;
@@ -365,28 +366,28 @@ button[type="submit"] {
     justify-content: center;
     font-size: 48px;
     backdrop-filter: blur(10px);
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
 }
 .team-member:hover .team-avatar {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(0, 0, 0, 0.18);
     transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.08);
 }
 .team-member h3 {
     font-size: 1.4rem;
     margin-bottom: 8px;
-    color: white;
+    color: #111111;
 }
 .team-member .role {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(17, 17, 17, 0.7);
     margin-bottom: 15px;
 }
 .team-member .bio {
     font-size: 0.9rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
     margin-bottom: 20px;
 }
 .team-social {
@@ -397,21 +398,21 @@ button[type="submit"] {
 .team-social a {
     width: 36px;
     height: 36px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
     text-decoration: none;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.12);
 }
 .team-social a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.08);
     transform: translateY(-3px);
-    color: white;
+    color: #111111;
 }
 /* Services page styles */
 .services-grid {
@@ -422,7 +423,7 @@ button[type="submit"] {
 }
 .service-card {
     padding: 40px 30px;
-    color: white;
+    color: #111111;
     text-align: left;
 }
 .service-header {
@@ -433,7 +434,7 @@ button[type="submit"] {
 .service-icon {
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.06);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -443,10 +444,10 @@ button[type="submit"] {
 }
 .service-card h3 {
     font-size: 1.4rem;
-    color: white;
+    color: #111111;
 }
 .service-card p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -454,7 +455,7 @@ button[type="submit"] {
     list-style: none;
 }
 .service-features li {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(17, 17, 17, 0.7);
     margin-bottom: 8px;
     padding-left: 20px;
     position: relative;
@@ -463,7 +464,7 @@ button[type="submit"] {
     content: "✓";
     position: absolute;
     left: 0;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(17, 17, 17, 0.9);
 }
 /* Contact page styles */
 .contact-grid {
@@ -479,17 +480,17 @@ button[type="submit"] {
     padding: 40px;
 }
 .contact-form h2 {
-    color: white;
+    color: #111111;
     font-size: 2rem;
     margin-bottom: 30px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 .form-group {
     margin-bottom: 20px;
 }
 .form-group label {
     display: block;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(17, 17, 17, 0.9);
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -497,10 +498,10 @@ button[type="submit"] {
 .form-group textarea {
     width: 100%;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.18);
     border-radius: 10px;
-    color: white;
+    color: #111111;
     font-size: 16px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     backdrop-filter: blur(10px);
@@ -509,13 +510,13 @@ button[type="submit"] {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(17, 17, 17, 0.5);
 }
 .form-group textarea {
     height: 120px;
@@ -524,12 +525,12 @@ button[type="submit"] {
 }
 .contact-info {
     padding: 40px;
-    color: white;
+    color: #111111;
 }
 .contact-info h2 {
     font-size: 2rem;
     margin-bottom: 30px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 .contact-item {
     display: flex;
@@ -539,7 +540,7 @@ button[type="submit"] {
 .contact-item-icon {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.06);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -548,29 +549,29 @@ button[type="submit"] {
     font-size: 18px;
 }
 .contact-item-text h4 {
-    color: white;
+    color: #111111;
     margin-bottom: 5px;
 }
 .contact-item-text p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
 }
 .contact-map {
     padding: 40px;
-    color: white;
+    color: #111111;
     width: 100%;
 }
 .contact-map h2 {
     font-size: 2rem;
     margin-bottom: 30px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
     text-align: center;
 }
 .map-container {
     width: 100%;
     height: 500px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.035);
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
     backdrop-filter: blur(10px);
@@ -582,7 +583,7 @@ button[type="submit"] {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8);
     text-align: center;
 }
 .map-placeholder-icon {
@@ -612,7 +613,7 @@ button[type="submit"] {
 .footer-content {
     padding: 30px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.75);
 }
 .footer-links {
     display: flex;
@@ -622,24 +623,24 @@ button[type="submit"] {
     flex-wrap: wrap;
 }
 .footer-links a {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(17, 17, 17, 0.7);
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
     padding: 5px 10px;
 }
 .footer-links a:hover {
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: #111111;
+    text-shadow: none;
 }
 .copyright {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(17, 17, 17, 0.6);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     padding-top: 20px;
 }
 .copyright a {
-	color: rgba(255, 255, 255, 0.6);
+	color: rgba(17, 17, 17, 0.6);
 	text-decoration: none;
 }
 /* Responsive design */
@@ -872,4 +873,3 @@ button[type="submit"] {
         flex-basis: auto;
     }
 }
-
