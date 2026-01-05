@@ -96,15 +96,19 @@
                                     <div class="hero-body">
                                         <h1>Loan Approval Policy Modeling + Anomaly Detection</h1>
                                         <p>
-                                            This project takes a portfolio of ~20k loan applications and uses a simple, interpretable
-                                            model to learn the bank&apos;s implicit loan approval policy. Once that policy is learned,
-                                            the same model is used to scan the portfolio and flag loans where the historical decision
-                                            does not match the behaviour suggested by the data.
+                                          This project takes ~20k loan applications and trains an interpretable model to reverse-engineer the bank’s
+                                          <strong>implicit approval policy</strong> — the one that actually gets applied in practice.
                                         </p>
                                         <p>
-                                            In practical terms:
-                                            historical approvals &amp; rejections &rarr; learned approval policy &rarr;
-                                            a shortlist of high-value anomalies for risk and underwriting teams to review.
+                                          Once that baseline is learned, we use it as a <strong>policy mirror</strong> to scan the portfolio and flag
+                                          <strong>high-confidence exceptions</strong>: cases where the historical decision deviates sharply from the pattern
+                                          the bank typically follows.
+                                        </p>
+                                        <p>
+                                          In practical terms:
+                                          <br />
+                                          <strong>Historical approvals &amp; rejections</strong> &rarr; <strong>learned approval policy</strong> &rarr;
+                                          <strong>a short, high-signal anomaly queue</strong> for underwriting and risk review.
                                         </p>
                                         <a href="https://github.com/MNN1999/ML-Loan-Analysis"
                                            class="btn-primary"
@@ -389,11 +393,16 @@
                             <!-- Match the same header card style as the pipeline page -->
                             <section class="section">
                                 <div class="card glass section-header-card">
-                                    <h2>Model &amp; insights</h2>
+                                    <h2>Model &amp; Insights</h2>
                                     <p>
-                                        The core model is a logistic regression trained to mimic the bank&apos;s approval decisions.
-                                        The power of the project lies in how this model is interpreted and used:
-                                        first to understand policy, then to spot anomalies.
+                                      The core model is a logistic regression trained to replicate the bank’s approval decisions.
+                                      The point isn’t complexity — it’s <strong>transparency</strong>. We want a model that can be explained,
+                                      audited, and operationalised.
+                                    </p>
+                                    <p>
+                                      We use it in two ways:
+                                      <strong>(1)</strong> to map the bank’s policy across risk and affordability segments, and
+                                      <strong>(2)</strong> to surface high-confidence decision exceptions that merit human review.
                                     </p>
                                 </div>
                             </section>
