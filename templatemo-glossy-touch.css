@@ -724,4 +724,73 @@ button[type="submit"] {
 }
 
 
+/* =========================
+   FORCE ALL TEXT TO BLACK
+   Paste at END of CSS file
+   ========================= */
+
+/* Global defaults */
+html, body {
+  color: #000 !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #000 !important;
+  text-shadow: none !important;
+}
+
+/* Common text elements */
+p, span, div, li, label, small, strong, em {
+  color: #000 !important;
+}
+
+/* Navigation + logo */
+.logo,
+.nav-links a {
+  color: #000 !important;
+  text-shadow: none !important;
+}
+
+/* Cards/sections that had white text */
+.feature-card,
+.service-card,
+.about-text,
+.team-member,
+.stat-card,
+.contact-info,
+.contact-form,
+.footer-content,
+.copyright,
+.contact-item-text p,
+.team-member .role,
+.team-member .bio,
+.stat-label {
+  color: #000 !important;
+}
+
+/* Links */
+a {
+  color: #000 !important;
+}
+a:hover {
+  opacity: 0.75;
+}
+
+/* Form fields */
+.form-group input,
+.form-group textarea {
+  color: #000 !important;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(0,0,0,0.5) !important;
+}
+
+/* CTA button text */
+.cta-button,
+.cta-button:hover {
+  color: #000 !important;
+}
+
 
