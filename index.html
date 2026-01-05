@@ -123,11 +123,13 @@
                                         <div class="card-icon">❓</div>
                                         <h3>Problem</h3>
                                         <p>
-                                            The bank makes thousands of loan decisions, but the real approval policy lives in
-                                            underwriters&apos; heads and scattered guidelines. Medium-risk customers are especially
-                                            inconsistent: some are approved with relatively high debt burden, others are rejected
-                                            despite looking affordable. Management has no clean way to see where policy is strict,
-                                            lenient, or simply noisy.
+                                          The bank processes high volumes of loan applications, but the effective approval policy is implicit
+                                          (distributed across underwriters and guidelines). The main inconsistency sits in the <strong>Medium-risk</strong>
+                                          segment: similar applicants sometimes receive different outcomes.
+                                        </p>
+                                        <p>
+                                          Result: limited visibility into where decisions are <strong>consistent vs noisy</strong>, and no simple way to
+                                          pinpoint <strong>off-policy approvals/rejections</strong> for review.
                                         </p>
                                     </article>
 
@@ -135,16 +137,15 @@
                                         <div class="card-icon">📊</div>
                                         <h3>Analysis</h3>
                                         <p>
-                                            We build a compact pipeline:
-                                            raw loan-level CSV &rarr; PostgreSQL on Neon &rarr; SQL feature engineering
-                                            (risk bands, income bands, ticket-size bands, affordability ratios) &rarr;
-                                            Python EDA &amp; logistic regression.
+                                          We build an end-to-end, reproducible pipeline:
+                                          <br />
+                                          <strong>CSV</strong> &rarr; <strong>PostgreSQL (Neon)</strong> &rarr; <strong>SQL feature engineering</strong>
+                                          (risk/income/amount/duration bands + affordability ratios) &rarr; <strong>Python EDA</strong>
+                                          &rarr; <strong>Logistic Regression</strong>.
                                         </p>
                                         <p>
-                                            The model is trained to mimic the bank&apos;s approval behaviour, then evaluated and
-                                            calibrated by risk and affordability segments. In short:
-                                            data in SQL &rarr; features that match how risk teams think &rarr; an ML model
-                                            that behaves like the bank.
+                                          The model is trained to <strong>replicate historical approval decisions</strong>, then validated by
+                                          <strong>risk</strong> and <strong>affordability</strong> segments to ensure probabilities are usable for rule-like thresholds.
                                         </p>
                                     </article>
 
@@ -152,19 +153,19 @@
                                         <div class="card-icon">✅</div>
                                         <h3>Solution</h3>
                                         <p>
-                                            Once the model reliably mirrors the existing policy, we use it as a
-                                            &ldquo;policy mirror&rdquo;: for each loan, we compare the model&apos;s predicted
-                                            approval with the historical decision.
+                                          Use the trained model as a <strong>policy mirror</strong>:
+                                          <br />
+                                          <strong>Historical decision</strong> &harr; <strong>Predicted approval probability</strong>.
                                         </p>
                                         <p>
-                                            Medium-risk segment &rarr; high-confidence predictions (very low or very high approval probability)
-                                            &rarr; loans where model and history disagree &rarr; an anomaly list that highlights:
-                                            &ldquo;this customer looks like we usually approve, but was rejected&rdquo; and
-                                            &ldquo;this customer looks like we usually reject, but was approved&rdquo;.
+                                          Focus on <strong>Medium-risk</strong> and flag high-confidence exceptions:
+                                          <br />
+                                          <strong>p &ge; 0.90</strong> &amp; <strong>Rejected</strong> &rarr; <em>potential under-approval</em>
+                                          <br />
+                                          <strong>p &le; 0.10</strong> &amp; <strong>Approved</strong> &rarr; <em>potential over-approval</em>
                                         </p>
                                         <p>
-                                            The output is a small, focused review queue that can be used for QA, policy refinement,
-                                            or training new underwriters.
+                                          Output: a <strong>short, high-signal review queue</strong> for underwriting QA, policy tuning, and training.
                                         </p>
                                     </article>
                                 </div>
@@ -555,19 +556,22 @@
                         <div class="content-wrapper">
                             <section class="section grid-2">
                                 <article class="card glass">
-                                    <h2>Reflection &amp; extensions</h2>
+                                   <h2>Reflection &amp; Extensions</h2>
                                     <p>
-                                        This work shows how an interpretable model can reconstruct the bank’s implicit approval policy 
-                                        and isolate a small set of high-confidence exceptions for review. Next steps could include:
+                                    This work shows how an interpretable model can reconstruct the bank’s implicit approval policy and
+                                    isolate a small set of high-confidence exceptions for review.
                                     </p>
+                                    
+                                    <h3>Next steps</h3>
                                     <ul>
-                                        <li>Gather outcome data and connect decisions to outcomes (defaults/loss).</li>
-                                        <li>Introduce cost-based thresholds.</li>
-                                        <li>Operationalise a monitored process for ongoing policy QA.</li>
+                                    <li><strong>Link to outcomes:</strong> connect decisions to realised defaults/loss to validate signal and impact.</li>
+                                    <li><strong>Cost-based thresholds:</strong> tune approval/review cut-offs using expected loss and business value.</li>
+                                    <li><strong>Operationalise QA:</strong> run as a monitored control with drift checks and a defined review workflow.</li>
                                     </ul>
+                                    
                                     <p>
-                                        With real outcomes data, the same framework can be enhanced to prioritise cases by financial impact 
-                                        and run as a scheduled control with monitoring, escalation rules, and feedback into policy and training.
+                                    With real outcome data, the same framework can prioritise cases by financial impact and run as a scheduled
+                                    control with monitoring, escalation rules, and feedback into policy and training.
                                     </p>
                                 </article>
 
