@@ -247,13 +247,21 @@ a:hover {
     font-weight: 500;
     text-decoration: none;
     color: rgba(17, 17, 17, 0.9);
-    transition: all 0.2s ease;
+    background: transparent;
+    /* animate the same properties as cards */
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .nav-link:hover,
 .nav-link.is-active {
     background: rgba(0, 0, 0, 0.06);
     color: var(--color-text-main);
+    transform: translateY(-3px);              /* lift like the cards */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
 }
 
 /* =====================================================================
@@ -595,6 +603,7 @@ a:hover {
         padding: 20px 18px;
     }
 }
+
 
 
 
