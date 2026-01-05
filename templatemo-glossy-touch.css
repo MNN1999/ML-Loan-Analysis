@@ -14,7 +14,7 @@ body {
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     background: #ffffff;
-    color: #111111;
+    color: #ffdab9;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -843,3 +843,4 @@ button[type="submit"] {
         font-size: 22px;
     }
 }
+
