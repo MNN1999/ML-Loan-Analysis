@@ -1,759 +1,450 @@
-@charset "utf-8";
-/*
+/* =====================================================================
+   0. THEME TOKENS (easy knobs)
+   ---------------------------------------------------------------------
+   Change these values to re-skin the whole template:
+   - background colors
+   - glass shading
+   - text colors
+   - border radiuses
+   ===================================================================== */
 
-TemplateMo 592 glossy touch
+:root {
+    /* Global colors */
+    --color-page-bg: #ffffff;
+    --color-text-main: #111111;
+    --color-text-muted: rgba(17, 17, 17, 0.75);
 
-https://templatemo.com/tm-592-glossy-touch
+    /* Glass “card” look */
+    --glass-bg: rgba(20, 20, 24, 0.12);
+    --glass-bg-hover: rgba(20, 20, 24, 0.18);
+    --glass-border: rgba(0, 0, 0, 0.14);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+    --glass-radius: 20px;
 
-*/
+    /* Accent + lines */
+    --color-accent: #111111;
+    --color-divider: rgba(0, 0, 0, 0.08);
 
-* {
+    /* Typography */
+    --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-body: 16px;
+    --line-height-body: 1.6;
+
+    /* Layout / spacing */
+    --layout-max-width: 1200px;
+    --page-padding-x: 20px;
+    --page-padding-y: 40px;
+    --section-gap: 40px;
+    --card-padding-y: 24px;
+    --card-padding-x: 28px;
+}
+
+/* =====================================================================
+   1. RESET + BASE ELEMENTS
+   ===================================================================== */
+
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    button[type="submit"] {
-        font-family: inherit;
-        font-size: 16px;
-    }
 }
+
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #ffffff; /* was #e7bb9b */
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    background: var(--color-page-bg);
+    color: var(--color-text-main);
     min-height: 100vh;
     overflow-x: hidden;
 }
-/* Animated background elements */
-.bg-shapes {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
+
+/* Base typography (can be tuned to your taste) */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: var(--color-text-main);
 }
-.shape {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.035); /* was rgba(255, 255, 255, 0.08); */
-    animation: float 6s ease-in-out infinite;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); /* was light-on-dark */
+
+h1 {
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 0.6em;
 }
-.shape:nth-child(1) {
-    width: 120px;
-    height: 80px;
-    border-radius: 15px;
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-    transform: rotate(15deg);
+
+h2 {
+    font-size: clamp(1.8rem, 2.4vw, 2.2rem);
+    margin-bottom: 0.5em;
 }
-.shape:nth-child(2) {
-    width: 90px;
-    height: 140px;
-    border-radius: 12px;
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-    transform: rotate(-20deg);
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5em;
 }
-.shape:nth-child(3) {
-    width: 100px;
-    height: 60px;
-    border-radius: 10px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 4s;
-    transform: rotate(25deg);
+
+p {
+    margin-bottom: 0.75em;
 }
-.shape:nth-child(4) {
-    width: 80px;
-    height: 120px;
-    border-radius: 8px;
-    top: 10%;
-    right: 30%;
-    animation-delay: 1s;
-    transform: rotate(-10deg);
+
+/* Simple utility classes */
+.mt-lg { margin-top: 1.5rem; }
+
+a {
+    color: var(--color-accent);
+    text-decoration: underline;
 }
-.shape:nth-child(5) {
-    width: 110px;
-    height: 70px;
-    border-radius: 14px;
-    bottom: 40%;
-    right: 20%;
-    animation-delay: 3s;
-    transform: rotate(30deg);
+
+a:hover {
+    text-decoration: none;
 }
-.shape:nth-child(6) {
-    width: 95px;
-    height: 95px;
-    border-radius: 20px;
-    top: 40%;
-    left: 5%;
-    animation-delay: 5s;
-    transform: rotate(-15deg);
+
+/* =====================================================================
+   2. GLOBAL LAYOUT WRAPPERS
+   ===================================================================== */
+
+.page-wrapper {
+    padding: 30px 0;
 }
-@keyframes float {
-    0%,
-    100% {
-        transform: translateY(0px) rotate(var(--start-rotation, 0deg));
-    }
-    50% {
-        transform: translateY(-20px)
-            rotate(calc(var(--start-rotation, 0deg) + 180deg));
-    }
+
+.layout-shell {
+    max-width: calc(var(--layout-max-width) + 2 * var(--page-padding-x));
+    margin: 0 auto;
 }
-/* Glass container styles */
+
+.container {
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
+    padding: 0 var(--page-padding-x);
+}
+
+.content-wrapper {
+    min-height: calc(100vh - 260px); /* space for header + footer */
+    padding: var(--page-padding-y) 0;
+}
+
+/* Generic section wrapper for vertical rhythm */
+.section {
+    margin-bottom: var(--section-gap);
+}
+
+/* Page switching system (multi-section “app” navigation) */
+.page {
+    display: none;
+}
+
+.page.is-active {
+    display: block;
+}
+
+/* =====================================================================
+   3. GLASS CARDS + BUTTONS
+   ===================================================================== */
+
+/* Core glass style – controls look of all “glass boxes” */
 .glass {
-    background: rgba(20, 20, 24, 0.12); /* dark-tinted glass */
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.14);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    box-shadow: var(--glass-shadow);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    color: #111111; /* default dark text inside glass */
+    color: var(--color-text-main);
 }
+
 .glass:hover {
-    background: rgba(20, 20, 24, 0.18);
-    transform: translateY(-5px);
+    background: var(--glass-bg-hover);
+    transform: translateY(-4px);
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
-/* Header styles */
-header {
-    padding: 20px;
+
+/* Generic “card” wrapper – used everywhere for content blocks */
+.card {
+    padding: var(--card-padding-y) var(--card-padding-x);
+    border-radius: var(--glass-radius);
 }
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+
+/* Centered card content (title centered, body text still controlled by p) */
+.card--center {
+    text-align: center;
 }
-/* Navigation styles */
-nav {
+
+/* Simple icon-circle used in cards */
+.card-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.06);
+    font-size: 24px;
+}
+
+/* Primary CTA button (e.g. “View project on GitHub”) */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 999px;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text-main);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* =====================================================================
+   4. HEADER + NAVIGATION
+   ===================================================================== */
+
+.site-header {
+    margin-top: 10px;
+}
+
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 45px;
+    padding: 22px 28px;
 }
+
 .logo {
-    font-size: 32px;
-    font-weight: bold;
-    color: #111111; /* was white */
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--color-text-main);
     cursor: pointer;
 }
+
 .logo-icon {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .logo-icon svg {
     width: 100%;
     height: 100%;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
     transition: all 0.3s ease;
 }
+
 .logo:hover .logo-icon svg {
-    transform: scale(1.1) translateY(-2px);
+    transform: scale(1.05) translateY(-2px);
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
 }
+
+/* Nav links */
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 24px;
 }
-.nav-links a {
-    color: rgba(17, 17, 17, 0.9); /* was rgba(255, 255, 255, 0.9) */
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 12px 24px 13px 24px;
+
+.nav-link {
+    display: inline-block;
+    padding: 10px 22px 11px 22px;
     border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25); /* was white */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgba(17, 17, 17, 0.9);
+    transition: all 0.2s ease;
 }
-.nav-links a:hover,
-.nav-links a.active {
-    color: #111111;
-    background: rgba(0, 0, 0, 0.06); /* was light white overlay */
-    text-shadow: none;
+
+.nav-link:hover,
+.nav-link.is-active {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-text-main);
 }
-/* Page system */
-.page {
-    display: none;
-    min-height: 100vh;
-    padding: 40px 20px 20px;
+
+/* =====================================================================
+   5. HERO LAYOUTS (SPLIT VIEW)
+   ===================================================================== */
+
+/* Section used for “overview” hero */
+.section-hero {
+    padding: 40px 36px;
 }
-.page.active {
-    display: block;
-}
-/* Content wrapper to contain page content */
-.content-wrapper {
-    min-height: calc(100vh - 300px);
-}
-/* Home page styles */
-.hero {
+
+/* 2-column split: image on left, copy on right */
+.hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    padding: 60px 40px;
-    margin-bottom: 40px;
-}
-.hero-image {
-    display: flex;
-    justify-content: center;
+    grid-template-columns: 1.1fr 1.3fr;
+    gap: 32px;
     align-items: center;
 }
-.hero-image img {
+
+.hero-media img {
     width: 100%;
     max-width: 440px;
     height: auto;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
-.hero-content {
-    text-align: left;
-}
-.hero h1 {
-    font-size: 2.8rem;
-    color: #111111; /* was white */
-    margin-bottom: 20px;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    line-height: 1.2;
-}
-.hero p {
-    font-size: 1.2rem;
-    color: rgba(17, 17, 17, 0.9); /* was rgba white */
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-.cta-button {
-    display: inline-block;
-    padding: 15px 40px;
-    background: rgba(0, 0, 0, 0.06); /* was rgba white */
-    color: #111111; /* was white */
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(0, 0, 0, 0.12); /* was white */
-    cursor: pointer;
-}
-.cta-button:hover {
-    background: rgba(0, 0, 0, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-button[type="submit"] {
-    font-family: inherit;
-    font-size: 16px;
-}
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-.feature-card {
-    padding: 40px 30px;
-    text-align: center;
-    color: #111111; /* was white */
-}
-.feature-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px;
-    background: rgba(0, 0, 0, 0.06); /* was white tint */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-}
-.feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #111111;
-}
-.feature-card p {
-    color: rgba(17, 17, 17, 0.8);
-    line-height: 1.6;
-}
-/* About page styles */
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-    align-items: center;
-}
-.about-text {
-    padding: 40px;
-    color: #111111; /* was white */
-}
-.about-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-}
-.about-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: rgba(17, 17, 17, 0.9); /* was rgba white */
-    margin-bottom: 20px;
-}
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
-.stat-card {
-    text-align: center;
-    padding: 30px;
-    color: #111111;
-}
-.stat-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #111111;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-}
-.stat-label {
-    font-size: 1.1rem;
-    color: rgba(17, 17, 17, 0.8);
-    margin-top: 10px;
-}
-/* Team section styles */
-.team-section {
-    margin-bottom: 60px;
-}
-.team-section h2 {
-    font-size: 2.5rem;
-    color: #111111;
-    text-align: center;
-    margin-bottom: 50px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-.team-member {
-    padding: 40px 30px;
-    text-align: center;
-    color: #111111;
-    transition: all 0.3s ease;
-}
-.team-member:hover {
-    transform: translateY(-10px);
-}
-.team-avatar {
-    width: 120px;
-    height: 120px;
-    background: rgba(0, 0, 0, 0.05); /* was white tint */
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    backdrop-filter: blur(10px);
-    border: 3px solid rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease;
-}
-.team-member:hover .team-avatar {
-    border-color: rgba(0, 0, 0, 0.18);
-    transform: scale(1.05);
-    background: rgba(0, 0, 0, 0.08);
-}
-.team-member h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-    color: #111111;
-}
-.team-member .role {
-    font-size: 1rem;
-    color: rgba(17, 17, 17, 0.7);
-    margin-bottom: 15px;
-}
-.team-member .bio {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: rgba(17, 17, 17, 0.8);
-    margin-bottom: 20px;
-}
-.team-social {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-.team-social a {
-    width: 36px;
-    height: 36px;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(17, 17, 17, 0.8);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-}
-.team-social a:hover {
-    background: rgba(0, 0, 0, 0.08);
-    transform: translateY(-3px);
-    color: #111111;
-}
-/* Services page styles */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-.service-card {
-    padding: 40px 30px;
-    color: #111111;
-    text-align: left;
-}
-.service-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-.service-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    margin-right: 15px;
-}
-.service-card h3 {
-    font-size: 1.4rem;
-    color: #111111;
-}
-.service-card p {
-    color: rgba(17, 17, 17, 0.8);
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-.service-features {
-    list-style: none;
-}
-.service-features li {
-    color: rgba(17, 17, 17, 0.7);
-    margin-bottom: 8px;
-    padding-left: 20px;
-    position: relative;
-}
-.service-features li:before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: rgba(17, 17, 17, 0.9);
-}
-/* Contact page styles */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-.contact-map-section {
-    margin-top: 40px;
-}
-.contact-form {
-    padding: 40px;
-}
-.contact-form h2 {
-    color: #111111;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-}
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    color: rgba(17, 17, 17, 0.9);
-    margin-bottom: 8px;
-    font-weight: 500;
-}
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    border-radius: 10px;
-    color: #111111;
-    font-size: 16px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 1);
-    border-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.12);
-}
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(17, 17, 17, 0.5);
-}
-.form-group textarea {
-    height: 120px;
-    resize: vertical;
-    line-height: 1.5;
-}
-.contact-info {
-    padding: 40px;
-    color: #111111;
-}
-.contact-info h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-}
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-}
-.contact-item-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    font-size: 18px;
-}
-.contact-item-text h4 {
-    color: #111111;
-    margin-bottom: 5px;
-}
-.contact-item-text p {
-    color: rgba(17, 17, 17, 0.8);
-}
-.contact-map {
-    padding: 40px;
-    color: #111111;
-    width: 100%;
-}
-.contact-map h2 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-    text-align: center;
-}
-.map-container {
-    width: 100%;
-    height: 500px;
-    background: rgba(0, 0, 0, 0.035);
-    border-radius: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    position: relative;
-    backdrop-filter: blur(10px);
-}
-.map-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: rgba(17, 17, 17, 0.8);
-    text-align: center;
-}
-.map-placeholder-icon {
-    font-size: 64px;
-    margin-bottom: 20px;
-    opacity: 0.7;
-}
-.map-placeholder p {
-    margin: 8px 0;
-    font-size: 16px;
-}
-.map-placeholder .address {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-.map-placeholder .integration-note {
-    font-size: 14px;
-    opacity: 0.6;
-    margin-top: 20px;
-}
-/* Footer styles */
-#footer {
-    margin-top: 60px;
-    padding: 30px 0;
-}
-.footer-content {
-    padding: 30px;
-    text-align: center;
-    color: rgba(17, 17, 17, 0.75);
-}
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-.footer-links a {
-    color: rgba(17, 17, 17, 0.7);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
-    padding: 5px 10px;
-}
-.footer-links a:hover {
-    color: #111111;
-    text-shadow: none;
-}
-.copyright {
-    font-size: 14px;
-    color: rgba(17, 17, 17, 0.6);
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    padding-top: 20px;
-}
-.copyright a {
-	color: rgba(17, 17, 17, 0.6);
-	text-decoration: none;
-}
-/* Responsive design */
-@media (max-width: 1024px) {
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 768px) {
-    /* Adjust padding for mobile */
-    .page {
-        padding: 30px 20px 20px;
-    }
-    .content-wrapper {
-        min-height: auto;
-    }
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 20px;
-    }
-    .hero-content {
-        text-align: center;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    nav {
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px 30px;
-    }
-    .nav-links {
-        gap: 15px;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-    .nav-links a {
-        display: block;
-        text-align: center;
-        width: 100%;
-        max-width: 200px;
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-    .about-content,
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    .team-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .footer-links {
-        gap: 15px;
-        flex-direction: column;
-    }
-    .footer-links a {
-        display: block;
-        text-align: center;
-    }
-    button[type="submit"] {
-        width: 100%;
-    }
-    .map-container {
-        height: 350px;
-    }
-    .logo-icon {
-        width: 40px;
-        height: 40px;
-    }
-    .logo {
-        font-size: 22px;
-    }
-}
 
-
-/* =======================================================================
-   Custom section tweaks (Data & pipeline + Timeline + Architecture cards)
-   ======================================================================= */
-
-/* 1) About page intro: make it match the “Model & insights” hero layout */
-.page-hero {
-    /* same feel as .hero, but a bit more “title-left / copy-right” */
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
-}
-
-.page-hero .hero-copy p:last-child {
+.hero-body p:last-child {
     margin-bottom: 0;
 }
 
-@media (max-width: 900px) {
-    .page-hero {
-        grid-template-columns: 1fr;
+/* =====================================================================
+   6. GENERIC GRID HELPERS
+   ===================================================================== */
+
+/* 3 equal columns (auto-wrap on mobile) */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+/* 2 equal columns (used for reflection + links) */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Vertical stack helper */
+.stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.stack--gap-md {
+    gap: 16px;
+}
+
+/* =====================================================================
+   7. BACKGROUND SHAPES (FLOATING PANELS)
+   ===================================================================== */
+
+.bg-shapes {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.035);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Sizes / positions for each shape – purely visual, tweak as you like */
+.shape-1 { width: 120px; height: 80px; top: 20%; left: 10%; }
+.shape-2 { width: 90px; height: 140px; top: 60%; right: 15%; }
+.shape-3 { width: 100px; height: 60px; bottom: 20%; left: 20%; }
+.shape-4 { width: 80px; height: 120px; top: 10%; right: 30%; }
+.shape-5 { width: 110px; height: 70px; bottom: 40%; right: 20%; }
+.shape-6 { width: 95px; height: 95px; top: 40%; left: 5%; }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-18px);
     }
 }
 
-/* 2) End-to-end pipeline (timeline) spacing so text never touches edges */
+/* =====================================================================
+   8. PIPELINE / ARCHITECTURE LAYOUT
+   ===================================================================== */
+
+/* Big “section card” that wraps the 3 pipeline steps */
+.section-header-card {
+    padding: 40px 40px 32px 40px;
+}
+
+/* 3 stacked rows that each have left (step label) + right (details) */
+.pipeline-grid {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.pipeline-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 18px 20px;
+}
+
+.pipeline-left {
+    flex: 0 0 240px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.pipeline-step {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.pipeline-right {
+    flex: 1;
+    min-width: 0;
+}
+
+.pipeline-right ul {
+    margin: 0 0 10px 1.1rem;
+}
+
+.pipeline-right li {
+    margin-bottom: 4px;
+}
+
+.pipeline-arrow {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* =====================================================================
+   9. TIMELINE LAYOUT (END-TO-END PIPELINE)
+   ===================================================================== */
+
+.section-title {
+    margin-bottom: 14px;
+}
+
 .timeline {
     display: grid;
     gap: 18px;
-    margin-top: 24px;
+    margin-top: 10px;
 }
 
 .timeline-item {
     display: flex;
     align-items: flex-start;
     gap: 18px;
-    padding: 26px 28px; /* this fixes the “text touching border” issue */
+    padding: 22px 24px;
 }
 
 .timeline-icon {
@@ -769,135 +460,173 @@ button[type="submit"] {
     border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
-.timeline-content {
-    min-width: 0;
-}
-
 .timeline-content h3 {
-    margin: 2px 0 10px;
-    font-size: 1.35rem;
-}
-
-.timeline-content p {
-    margin: 10px 0;
-    line-height: 1.7;
+    margin-bottom: 8px;
+    font-size: 1.3rem;
 }
 
 .timeline-content ul {
-    margin: 8px 0 10px 1.1rem;
+    margin: 6px 0 10px 1.1rem;
 }
 
 .timeline-content li {
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
-@media (max-width: 900px) {
-    .timeline-item {
-        padding: 22px 20px;
-    }
-}
+/* =====================================================================
+   10. VIZ ROWS (IMAGE + EXPLANATION)
+   ===================================================================== */
 
-/* 3) Architecture section: one big glass “section card” + 3 horizontal sub-cards */
-.architecture {
-    margin-bottom: 40px;
-}
-
-.architecture-card {
-    /* keep your existing about-text spacing, but ensure consistent bottom rhythm */
-    padding: 40px;
-}
-
-.architecture .pipeline-grid {
-    /* override the inline <style> (which sets 3 columns on desktop) */
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-    margin-top: 18px;
-}
-
-.architecture .pipeline-card {
-    padding: 22px 24px;
-}
-
-.architecture .pipeline-row {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.architecture .pipeline-left {
-    flex: 0 0 260px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-}
-
-.architecture .pipeline-step {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    background: rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.10);
-}
-
-.architecture .pipeline-left h3 {
-    margin: 2px 0 0;
-    font-size: 1.25rem;
-}
-
-.architecture .pipeline-right {
-    flex: 1;
-    min-width: 0;
-}
-
-.architecture .pipeline-right ul {
-    margin: 0 0 10px 1.1rem;
-}
-
-.architecture .pipeline-arrow {
-    margin: 10px 0 0;
-    text-align: left;
-    font-size: 0.95rem;
-    opacity: 0.8;
-}
-
-@media (max-width: 900px) {
-    .architecture .pipeline-row {
-        flex-direction: column;
-        gap: 12px;
-    }
-    .architecture .pipeline-left {
-        flex-basis: auto;
-    }
-}
-
-/* Viz section layout + spacing */
 .viz-section {
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
 .viz-row {
     display: grid;
-    grid-template-columns: 1.3fr 1.4fr;
+    grid-template-columns: 1.1fr 1.3fr;
     gap: 24px;
     align-items: stretch;
 }
 
-/* Give the glass cards comfortable padding */
+/* Give viz cards pleasant padding */
 .viz-image,
 .viz-text {
-    padding: 24px 28px;   /* <-- this is what stops text touching the border */
+    padding: 24px 28px;
 }
 
-/* Center headings the way you wanted */
+/* Center heading + image on the left card */
 .viz-image {
-    text-align: center;   /* centers title + image */
+    text-align: center;
 }
 
+.viz-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* Only center heading on the text card, keep bullets left-aligned */
 .viz-text h3 {
-    text-align: center;   /* centers only the heading, bullets stay left */
+    text-align: center;
+    margin-bottom: 12px;
 }
 
+.viz-text ul {
+    margin-left: 1.1rem;
+}
+
+.viz-text li {
+    margin-bottom: 0.4rem;
+}
+
+/* =====================================================================
+   11. CONTACT / REFLECTION BLOCKS
+   ===================================================================== */
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.contact-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.contact-item-text h4 {
+    margin-bottom: 4px;
+}
+
+/* =====================================================================
+   12. FOOTER
+   ===================================================================== */
+
+.site-footer {
+    margin-top: 40px;
+}
+
+.footer-content {
+    padding: 24px 24px 26px 24px;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    cursor: pointer;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.footer-links .nav-link {
+    border-bottom: none;
+    padding: 6px 14px;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: rgba(17, 17, 17, 0.6);
+    border-top: 1px solid var(--color-divider);
+    padding-top: 12px;
+}
+
+/* =====================================================================
+   13. RESPONSIVE ADJUSTMENTS
+   ===================================================================== */
+
+@media (max-width: 900px) {
+    .nav {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .hero-grid,
+    .viz-row {
+        grid-template-columns: 1fr;
+    }
+
+    .pipeline-row {
+        flex-direction: column;
+    }
+
+    .timeline-item {
+        padding: 20px 18px;
+    }
+
+    .section-header-card {
+        padding: 28px 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .nav-link {
+        padding-inline: 14px;
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: 20px 18px;
+    }
+}
