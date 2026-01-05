@@ -28,6 +28,23 @@ https://templatemo.com/tm-592-glossy-touch
             .viz-row {
                 grid-template-columns: 1fr;
             }
+
+                /* Add padding so text / image don't hug the glass border */
+        .viz-image.glass,
+        .viz-text.glass {
+            padding: 24px 28px;
+        }
+        
+        /* Center heading + image on the left card */
+        .viz-image.glass {
+            text-align: center;
+        }
+        
+        /* Center only the heading on the right card */
+        .viz-text.glass h3 {
+            text-align: center;
+        }
+
         }
         .viz-image.glass img {
             width: 100%;
