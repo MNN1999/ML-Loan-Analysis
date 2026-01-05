@@ -844,3 +844,29 @@ button[type="submit"] {
     }
 }
 
+
+
+/* ------------------------------
+   before this all is well
+    Timeline section: add breathing room
+   (only affects your pipeline area)
+------------------------------ */
+.timeline-section .timeline-content p,
+.timeline-section .timeline-content ul {
+  margin: 0.9em 0;          /* blank line before + after */
+}
+
+.timeline-section .timeline-content p,
+.timeline-section .timeline-content li {
+  line-height: 1.6;         /* optional: nicer readability */
+}
+
+.timeline-section .timeline-content ul {
+  padding-left: 1.2rem;     /* restore indent */
+  list-style: disc;         /* make bullets show normally */
+}
+
+.timeline-section .timeline-content li {
+  margin: 0.35em 0;         /* space between bullet lines */
+}
+
