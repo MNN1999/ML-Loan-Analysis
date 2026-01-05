@@ -18,16 +18,7 @@ https://templatemo.com/tm-592-glossy-touch
 }
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(
-        135deg,
-        #0c0c0c 0%,
-        #1a1a2e 15%,
-        #16213e 35%,
-        #0f3460 50%,
-        #533a7d 70%,
-        #8b5a8c 85%,
-        #a0616a 100%
-    );
+    background: #e7bb9b;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -881,3 +872,4 @@ button[type="submit"] {
         flex-basis: auto;
     }
 }
+
