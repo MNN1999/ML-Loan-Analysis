@@ -17,7 +17,7 @@ https://templatemo.com/tm-592-glossy-touch
     }
 }
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Work Sans", "Playfair Display", serif;
     background: #ffffff; /* plain white background */
     color: #222; /* darker text for readability */
     min-height: 100vh;
@@ -722,3 +722,4 @@ button[type="submit"] {
     }
 
 }
+
