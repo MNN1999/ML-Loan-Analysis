@@ -123,49 +123,61 @@
                                         <div class="card-icon">❓</div>
                                         <h3>Problem</h3>
                                         <p>
-                                          The bank processes high volumes of loan applications, but the effective approval policy is implicit
-                                          (distributed across underwriters and guidelines). The main inconsistency sits in the <strong>Medium-risk</strong>
-                                          segment: similar applicants sometimes receive different outcomes.
+                                          The bank processes loan decisions at scale, but the real approval policy isn’t codified — it’s embedded in
+                                          underwriter judgment and loosely applied guidelines.
                                         </p>
                                         <p>
-                                          Result: limited visibility into where decisions are <strong>consistent vs noisy</strong>, and no simple way to
-                                          pinpoint <strong>off-policy approvals/rejections</strong> for review.
+                                          The inconsistency shows up where it matters most: <strong>Medium-risk</strong> applicants. Two customers with
+                                          comparable affordability can walk away with opposite outcomes.
                                         </p>
+                                        <p>
+                                          That’s not just untidy governance — it’s financial exposure. At volume, small decision drift becomes
+                                          <strong>material leakage</strong>: missed good business on one side, and quiet risk accumulation on the other.
+                                        </p>
+
                                     </article>
 
                                     <article class="card glass card--center">
                                         <div class="card-icon">📊</div>
                                         <h3>Analysis</h3>
                                         <p>
-                                          We build an end-to-end, reproducible pipeline:
+                                          We convert judgment into an auditable baseline:
                                           <br />
                                           <strong>CSV</strong> &rarr; <strong>PostgreSQL (Neon)</strong> &rarr; <strong>SQL feature engineering</strong>
-                                          (risk/income/amount/duration bands + affordability ratios) &rarr; <strong>Python EDA</strong>
-                                          &rarr; <strong>Logistic Regression</strong>.
+                                          (risk / income / ticket-size / duration bands + affordability ratios)
+                                          &rarr; <strong>Python EDA</strong> &rarr; <strong>Logistic Regression</strong>.
                                         </p>
                                         <p>
-                                          The model is trained to <strong>replicate historical approval decisions</strong>, then validated by
-                                          <strong>risk</strong> and <strong>affordability</strong> segments to ensure probabilities are usable for rule-like thresholds.
+                                          The model is trained to <strong>replicate historical approvals</strong>, then validated by
+                                          <strong>risk</strong> and <strong>affordability</strong> segments to ensure calibration is good enough to support
+                                          threshold-based decisions.
                                         </p>
+                                        <p>
+                                          Bottom line: we make the policy <strong>measurable</strong>, <strong>explainable</strong>, and <strong>testable</strong>.
+                                        </p>
+
                                     </article>
 
                                     <article class="card glass card--center">
                                         <div class="card-icon">✅</div>
                                         <h3>Solution</h3>
                                         <p>
-                                          Use the trained model as a <strong>policy mirror</strong>:
+                                          Once the model mirrors the bank’s behaviour, we use it as a <strong>policy mirror</strong>:
                                           <br />
                                           <strong>Historical decision</strong> &harr; <strong>Predicted approval probability</strong>.
                                         </p>
                                         <p>
-                                          Focus on <strong>Medium-risk</strong> and flag high-confidence exceptions:
-                                          <br />
-                                          <strong>p &ge; 0.90</strong> &amp; <strong>Rejected</strong> &rarr; <em>potential under-approval</em>
-                                          <br />
-                                          <strong>p &le; 0.10</strong> &amp; <strong>Approved</strong> &rarr; <em>potential over-approval</em>
+                                          Then we focus on the only cases worth human attention — <strong>high-confidence exceptions</strong>
+                                          in the Medium-risk segment:
                                         </p>
                                         <p>
-                                          Output: a <strong>short, high-signal review queue</strong> for underwriting QA, policy tuning, and training.
+                                          <strong>p &ge; 0.90</strong> + <strong>Rejected</strong> &rarr; <em>likely under-approval</em>
+                                          <br />
+                                          <strong>p &le; 0.10</strong> + <strong>Approved</strong> &rarr; <em>likely over-approval</em>
+                                        </p>
+                                        <p>
+                                          Output: a <strong>tight, defensible review queue</strong> for underwriting QA — the fastest way to reduce drift,
+                                          improve consistency, and prevent small mistakes from turning into expensive ones.
                                         </p>
                                     </article>
                                 </div>
